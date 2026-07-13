@@ -602,7 +602,24 @@
 </footer>
 
 <script>
-  // Interactive node network background
+  // Basic deterrents: disable right-click and common devtools/view-source shortcuts.
+  // Note: this only discourages casual viewing — anyone determined can still
+  // access the page source through browser dev tools or network requests.
+  document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  document.addEventListener('keydown', (e) => {
+    const k = e.key.toLowerCase();
+    const blockCombo =
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && (k === 'i' || k === 'j' || k === 'c')) || // devtools panels
+      (e.metaKey && e.altKey && (k === 'i' || k === 'j' || k === 'c')) ||   // Mac devtools
+      (e.ctrlKey && k === 'u') || (e.metaKey && k === 'u') ||               // view-source
+      (e.ctrlKey && k === 's') || (e.metaKey && k === 's');                 // save page
+    if (blockCombo) e.preventDefault();
+  });
+
+  document.addEventListener('dragstart', (e) => e.preventDefault());
+
   (function () {
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
