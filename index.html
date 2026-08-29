@@ -79,9 +79,14 @@
   }
   .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--accent); letter-spacing: -0.02em; }
   .nav-logo span { color: var(--text); }
-  .nav-links { display: flex; gap: 36px; }
+  .nav-links { display: flex; gap: 36px; align-items: center; }
   .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--accent); }
+  .nav-toggle {
+    display: none;
+    background: none; border: 1px solid var(--border); color: var(--text);
+    width: 40px; height: 40px; font-size: 1.1rem; cursor: pointer; line-height: 1;
+  }
 
   .hero {
     min-height: 100vh;
@@ -268,6 +273,24 @@
   }
   @media (max-width: 900px) {
     nav { padding: 16px 24px; }
+    .nav-toggle { display: block; }
+    .nav-links {
+      position: fixed;
+      top: 65px; left: 0; right: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 22px;
+      padding: 28px 24px 32px;
+      background: rgba(6,8,16,0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transform: translateY(-8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .nav-links.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .nav-links a { font-size: 0.85rem; }
     .hero { padding: 100px 24px 60px; }
     .hero { grid-template-columns: 1fr; }
     .hero-photo-wrap { max-width: 280px; margin: 0 auto; order: -1; }
@@ -279,6 +302,30 @@
     .certs-row { grid-template-columns: 1fr; }
     footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
   }
+  @media (max-width: 480px) {
+    nav { padding: 14px 18px; }
+    .nav-logo { font-size: 1rem; }
+    .hero { padding: 88px 18px 48px; }
+    .hero-tag { font-size: 0.62rem; padding: 5px 12px; margin-bottom: 28px; }
+    h1 { letter-spacing: -0.03em; margin-bottom: 20px; }
+    .hero-desc { font-size: 0.82rem; line-height: 1.7; margin-bottom: 36px; }
+    .hero-ctas { gap: 12px; }
+    .btn-primary, .btn-secondary { padding: 13px 22px; font-size: 0.74rem; flex: 1 1 auto; text-align: center; }
+    .hero-stats { gap: 20px; margin-top: 36px; }
+    .stat-num { font-size: 1.5rem; }
+    .stat-label { font-size: 0.56rem; }
+    .hero-photo-wrap { max-width: 220px; }
+    section { padding: 48px 18px; }
+    .divider { margin: 0 18px; }
+    .section-title { margin-bottom: 40px; }
+    .project-card { padding: 28px 22px; }
+    .project-title { font-size: 1.1rem; }
+    .exp-card { padding: 28px 22px; }
+    .skill-group { padding: 26px 20px; }
+    .cert-card { padding: 24px 20px; gap: 16px; }
+    .cert-icon { font-size: 1.6rem; }
+    .contact-links { gap: 16px; flex-direction: column; align-items: center; }
+  }
 </style>
 </head>
 <body>
@@ -287,7 +334,8 @@
 
 <nav>
   <div class="nav-logo">Siddharth Soni<span>.</span></div>
-  <div class="nav-links">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+  <div class="nav-links" id="nav-links">
     <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
     <a href="#skills">Skills</a>
@@ -366,403 +414,4 @@
         <span class="tag green">Qwen 2.5</span>
         <span class="tag">FastAPI</span>
         <span class="tag">LangGraph</span>
-        <span class="tag">PostgreSQL</span>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-eyebrow">Multi-tenant workflow builder</div>
-      <div class="project-icon">🧩</div>
-      <div class="project-title">Enterprise Workflow Platform</div>
-      <p class="project-desc">
-        Led a 3-person team to build a modular workflow platform letting business users design custom processes through a visual React interface, with a plugin architecture supporting 10+ reusable modules including AI document extraction.
-      </p>
-      <div class="project-metric">Replaced 4+ hrs/day of manual data entry</div>
-      <div class="project-tags">
-        <span class="tag green">Qwen 2.5</span>
-        <span class="tag">React</span>
-        <span class="tag">FastAPI</span>
-        <span class="tag red">Team Lead</span>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-eyebrow">Legal RAG system</div>
-      <div class="project-icon">⚖️</div>
-      <div class="project-title">MokshaAI Legal Assistant</div>
-      <p class="project-desc">
-        Multi-vault Obsidian-based RAG system for Indian GST and Income Tax statutes, indexing 10,000+ sections. Combines dense vector search with BM25 retrieval, and a chat interface with source-highlighted citations.
-      </p>
-      <div class="project-metric">Migrated retrieval to SQLite FTS5 + regex prefetch</div>
-      <div class="project-tags">
-        <span class="tag green">RAG</span>
-        <span class="tag">ChromaDB</span>
-        <span class="tag">BM25</span>
-        <span class="tag">Sentence Transformers</span>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-eyebrow">Document generation</div>
-      <div class="project-icon">📄</div>
-      <div class="project-title">Document Generation Platform</div>
-      <p class="project-desc">
-        Full-stack invoice and document generation app with a React frontend and FastAPI/ReportLab backend, featuring an AI-powered "Smart Document Mode" for automatic field detection and required-field enforcement.
-      </p>
-      <div class="project-metric">Config-driven Ollama integration (deepseek-v3.2)</div>
-      <div class="project-tags">
-        <span class="tag green">React</span>
-        <span class="tag">FastAPI</span>
-        <span class="tag">ReportLab</span>
-        <span class="tag">Ollama</span>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-eyebrow">Logistics documents</div>
-      <div class="project-icon">🚚</div>
-      <div class="project-title">Lorry Receipt PDF System</div>
-      <p class="project-desc">
-        PDF generation and template detection system for Lorry Receipt documents, handling cross-page form detection, multi-copy single-page rendering, and consistent image/barcode repetition across document copies.
-      </p>
-      <div class="project-metric">FastAPI/ReportLab backend · React frontend</div>
-      <div class="project-tags">
-        <span class="tag">FastAPI</span>
-        <span class="tag">ReportLab</span>
-        <span class="tag">React</span>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-eyebrow">Cost estimation</div>
-      <div class="project-icon">🏗️</div>
-      <div class="project-title">MEP Project Management Tools</div>
-      <p class="project-desc">
-        Interactive reference documentation and a BOQ (Bill of Quantities) costing system for Mechanical, Electrical &amp; Plumbing workflows, with local-first Excel parsing via openpyxl and LLM calls kept strictly to header detection for cost efficiency.
-      </p>
-      <div class="project-metric">Cost-optimized: LLM used only where necessary</div>
-      <div class="project-tags">
-        <span class="tag">openpyxl</span>
-        <span class="tag">Python</span>
-        <span class="tag red">Cost-optimized</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-label">Career</div>
-  <h2 class="section-title">Work <em>Experience</em></h2>
-  <div class="experience-list">
-
-    <div class="exp-card reveal">
-      <div class="exp-meta">
-        <div class="exp-date">Dec 2024 — Present</div>
-        <div class="exp-company">Moksha Infotech</div>
-        <div class="exp-location">India</div>
-      </div>
-      <div class="exp-content">
-        <div class="exp-role">
-          AI Developer
-          <span class="role-badge">Full-time</span>
-        </div>
-        <ul class="exp-bullets">
-          <li>Architected <span class="highlight">3 end-to-end AI automation pipelines</span> for financial audit and banking compliance workflows using FastAPI, reducing manual review cycles by <span class="highlight">30%</span> across enterprise client engagements.</li>
-          <li>Fine-tuned <span class="highlight">Mistral 7B</span> on 10,000+ domain-specific financial documents for automated report generation, improving data extraction accuracy by <span class="highlight">25%</span>.</li>
-          <li>Spearheaded Generative AI risk and compliance-check solutions, eliminating <span class="highlight">8+ hours of weekly manual validation</span> while strengthening internal controls.</li>
-          <li>Orchestrated multi-step agentic workflows using <span class="highlight">LangChain / LangGraph</span> for autonomous decision-making across 5 financial stages, cutting human intervention by <span class="highlight">40%</span>.</li>
-          <li>Mentored 4 AI junior developers through weekly code reviews, reducing production bug rates by <span class="highlight">35%</span> over 6 months.</li>
-          <li>Collaborated with cross-functional enterprise stakeholders to deploy scalable REST APIs aligned with client risk parameters.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-card reveal">
-      <div class="exp-meta">
-        <div class="exp-date">Aug 2023 — May 2024</div>
-        <div class="exp-company">Mayowish</div>
-        <div class="exp-location">Bangalore, India</div>
-      </div>
-      <div class="exp-content">
-        <div class="exp-role">
-          AI Engineer Intern
-          <span class="role-badge">Internship</span>
-        </div>
-        <ul class="exp-bullets">
-          <li>Optimized a Python/OpenCV template-matching module, boosting image-processing speed by <span class="highlight">30%</span> for real-time analysis of 10,000+ daily product assets.</li>
-          <li>Streamlined secure text extraction from 500+ scanned documents per week via <span class="highlight">Tesseract OCR</span> pipelines.</li>
-          <li>Trained a <span class="highlight">CNN image-classification model</span> in PyTorch achieving 92%+ accuracy across 15+ product defect categories on 50,000+ labeled images.</li>
-          <li>Worked across 3 concurrent computer vision projects covering object detection (YOLO) and image segmentation (U-Net).</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- SKILLS -->
-<section id="skills" class="skills-section">
-  <div class="section-label">Toolkit</div>
-  <h2 class="section-title">Skills &amp; <em>Technologies</em></h2>
-  <div class="skills-grid">
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Languages &amp; Cloud</div>
-      <div class="skill-list">
-        <div class="skill-item"><span class="skill-dot"></span>Python</div>
-        <div class="skill-item"><span class="skill-dot"></span>SQL (PostgreSQL, MySQL)</div>
-        <div class="skill-item"><span class="skill-dot"></span>Bash</div>
-        <div class="skill-item"><span class="skill-dot"></span>Azure Cloud</div>
-        <div class="skill-item"><span class="skill-dot"></span>AWS (familiarity)</div>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Generative AI &amp; Agents</div>
-      <div class="skill-list">
-        <div class="skill-item"><span class="skill-dot"></span>Agentic AI Systems</div>
-        <div class="skill-item"><span class="skill-dot"></span>LangGraph &amp; LangChain</div>
-        <div class="skill-item"><span class="skill-dot"></span>ReAct Agents &amp; CrewAI</div>
-        <div class="skill-item"><span class="skill-dot"></span>LLM Fine-tuning (Mistral)</div>
-        <div class="skill-item"><span class="skill-dot"></span>Prompt Engineering</div>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Frameworks &amp; Core ML</div>
-      <div class="skill-list">
-        <div class="skill-item"><span class="skill-dot"></span>FastAPI &amp; Flask</div>
-        <div class="skill-item"><span class="skill-dot"></span>PyTorch &amp; TensorFlow</div>
-        <div class="skill-item"><span class="skill-dot"></span>Scikit-learn</div>
-        <div class="skill-item"><span class="skill-dot"></span>OpenCV &amp; Computer Vision</div>
-        <div class="skill-item"><span class="skill-dot"></span>NLP &amp; OCR</div>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Databases &amp; Tools</div>
-      <div class="skill-list">
-        <div class="skill-item"><span class="skill-dot"></span>MongoDB</div>
-        <div class="skill-item"><span class="skill-dot"></span>Vector DBs (FAISS, ChromaDB)</div>
-        <div class="skill-item"><span class="skill-dot"></span>Ollama</div>
-        <div class="skill-item"><span class="skill-dot"></span>Git &amp; Docker</div>
-        <div class="skill-item"><span class="skill-dot"></span>REST APIs</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- CERTIFICATIONS -->
-<section>
-  <div class="section-label">Credentials</div>
-  <h2 class="section-title">Certifications &amp; <em>Education</em></h2>
-  <div class="certs-row" style="margin-bottom:2px;">
-    <div class="cert-card reveal">
-      <div class="cert-icon">🏆</div>
-      <div>
-        <div class="cert-name">Microsoft Certified: Azure AI Fundamentals</div>
-        <div class="cert-issuer">Microsoft Corporation · AI-900</div>
-      </div>
-    </div>
-    <div class="cert-card reveal">
-      <div class="cert-icon">📘</div>
-      <div>
-        <div class="cert-name">Data Manipulation in Python</div>
-        <div class="cert-issuer">Udemy</div>
-      </div>
-    </div>
-  </div>
-  <div class="cert-card reveal" style="background:var(--card);border:1px solid var(--border);padding:32px;display:flex;align-items:center;gap:20px;">
-    <div class="cert-icon">🎓</div>
-    <div>
-      <div class="cert-name">B.Tech in Computer Engineering — AI Specialization</div>
-      <div class="cert-issuer" style="margin-top:4px;">Poornima University, Jaipur, India · Aug 2020 – Apr 2024</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- CONTACT -->
-<section id="contact" class="contact-section">
-  <div class="section-label">Let's Connect</div>
-  <h2 class="section-title" style="margin-bottom:32px;">Open to <em>New Roles</em></h2>
-  <a href="mailto:er.sonisiddharth@gmail.com" class="contact-email">er.sonisiddharth@gmail.com</a>
-  <div class="contact-links">
-    <a href="https://www.linkedin.com/in/er-sonisiddharth" class="contact-link" target="_blank" rel="noopener">
-      <span>⟶</span> LinkedIn
-    </a>
-    <a href="tel:+916377921784" class="contact-link">
-      <span>⟶</span> +91 637 792 1784
-    </a>
-    <!-- <a href="mailto:er.sonisiddharth@gmail.com" class="contact-link">
-      <span>⟶</span> Send Email
-    </a> -->
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=er.sonisiddharth@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-link">
-      <span>⟶</span> Send Email
-    </a>
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 Siddharth Soni. All rights reserved.</p>
-  <p>AI Engineer · Kota, Rajasthan, India</p>
-</footer>
-
-<script>
-  (function () {
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    let w, h, dpr;
-    let nodes = [];
-    const mouse = { x: -9999, y: -9999, active: false };
-
-    function resize() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = window.innerWidth;
-      h = window.innerHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      canvas.style.width = w + 'px';
-      canvas.style.height = h + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      initNodes();
-    }
-
-    function initNodes() {
-      const count = Math.max(28, Math.min(90, Math.floor((w * h) / 22000)));
-      nodes = new Array(count).fill(0).map(() => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.18,
-        vy: (Math.random() - 0.5) * 0.18,
-        r: Math.random() * 1.4 + 0.8
-      }));
-    }
-
-    const LINK_DIST = 150;
-    const MOUSE_DIST = 190;
-
-    function step() {
-      ctx.clearRect(0, 0, w, h);
-
-      // update
-      for (const n of nodes) {
-        n.x += n.vx;
-        n.y += n.vy;
-        if (n.x < 0 || n.x > w) n.vx *= -1;
-        if (n.y < 0 || n.y > h) n.vy *= -1;
-        n.x = Math.max(0, Math.min(w, n.x));
-        n.y = Math.max(0, Math.min(h, n.y));
-
-        // gentle cursor pull
-        if (mouse.active) {
-          const dx = mouse.x - n.x;
-          const dy = mouse.y - n.y;
-          const d2 = dx * dx + dy * dy;
-          if (d2 < MOUSE_DIST * MOUSE_DIST) {
-            const d = Math.sqrt(d2) || 1;
-            const force = (1 - d / MOUSE_DIST) * 0.02;
-            n.x += (dx / d) * force * 10;
-            n.y += (dy / d) * force * 10;
-          }
-        }
-      }
-
-      // links between nearby nodes
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i], b = nodes[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < LINK_DIST) {
-            const alpha = (1 - dist / LINK_DIST) * 0.5;
-            ctx.strokeStyle = 'rgba(150, 175, 220, ' + alpha.toFixed(3) + ')';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // links from nodes to cursor
-      if (mouse.active) {
-        for (const n of nodes) {
-          const dx = n.x - mouse.x, dy = n.y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < MOUSE_DIST) {
-            const alpha = (1 - dist / MOUSE_DIST) * 0.7;
-            ctx.strokeStyle = 'rgba(0, 229, 200, ' + alpha.toFixed(3) + ')';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(n.x, n.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // nodes
-      for (const n of nodes) {
-        ctx.beginPath();
-        ctx.fillStyle = 'rgba(210, 220, 245, 0.85)';
-        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      if (mouse.active) {
-        ctx.beginPath();
-        ctx.fillStyle = 'rgba(0, 229, 200, 0.9)';
-        ctx.arc(mouse.x, mouse.y, 2.4, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      if (!prefersReducedMotion) requestAnimationFrame(step);
-    }
-
-    window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-      mouse.active = true;
-    });
-    window.addEventListener('mouseleave', () => { mouse.active = false; });
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches && e.touches[0]) {
-        mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0].clientY;
-        mouse.active = true;
-      }
-    }, { passive: true });
-    window.addEventListener('touchend', () => { mouse.active = false; });
-
-    resize();
-    if (prefersReducedMotion) {
-      step(); // draw a single static frame
-    } else {
-      requestAnimationFrame(step);
-    }
-  })();
-
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const i = Array.from(reveals).indexOf(entry.target);
-        setTimeout(() => entry.target.classList.add('visible'), 80 * (i % 3));
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+        
