@@ -221,6 +221,11 @@
   .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .tag { font-size: 0.62rem; letter-spacing: 0.1em; padding: 4px 10px; background: rgba(124,92,252,0.1); border: 1px solid rgba(124,92,252,0.2); color: #a98bff; text-transform: uppercase; }
   .tag.green { background: rgba(0,229,200,0.08); border-color: rgba(0,229,200,0.2); color: var(--accent); }
+  .project-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .project-link { font-family: 'Syne', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; padding: 9px 16px; border: 1px solid rgba(0,229,200,0.35); color: var(--accent); transition: all 0.2s; }
+  .project-link:hover { background: var(--accent); color: #000; box-shadow: var(--glow); }
+  .project-link.ghost { border-color: var(--border); color: var(--muted); }
+  .project-link.ghost:hover { background: transparent; border-color: var(--accent); color: var(--accent); box-shadow: none; }
   .tag.red { background: rgba(255,94,120,0.08); border-color: rgba(255,94,120,0.2); color: var(--accent3); }
 
   .experience-list { display: flex; flex-direction: column; gap: 2px; }
@@ -408,30 +413,36 @@
       <div class="project-icon">🧾</div>
       <div class="project-title">SEFA Audit &amp; Financial Automation Pipeline</div>
       <p class="project-desc">
-        Autonomous pipeline that processes 100+ page government PDFs across capital assets and compliance tables, replacing manual review with a LangGraph-style agent running 5-step iterative reasoning loops to self-correct extraction errors.
+        Autonomous pipeline that processes 100+ page government PDFs across capital assets and compliance tables, replacing manual review with an autonomous agent running 5-step iterative reasoning loops to self-correct LLM extraction errors and align with federal compliance standards. A cloud LLM fallback layer covers edge cases under data-privacy controls.
       </p>
       <div class="project-metric">60% faster batch processing · 98%+ extraction accuracy</div>
       <div class="project-tags">
         <span class="tag green">Qwen 2.5</span>
         <span class="tag">FastAPI</span>
-        <span class="tag">LangGraph</span>
+        <span class="tag">MCP</span>
         <span class="tag">PostgreSQL</span>
       </div>
     </div>
 
     <div class="project-card reveal">
-      <div class="project-eyebrow">Multi-tenant workflow builder</div>
+      <div class="project-eyebrow">Multi-tenant workflow builder · Live demo</div>
       <div class="project-icon">🧩</div>
       <div class="project-title">Enterprise Workflow Platform</div>
       <p class="project-desc">
-        Led a 3-person team to build a modular workflow platform letting business users design custom processes through a visual React interface, with a plugin architecture supporting 10+ reusable modules including AI document extraction.
+        Led a 3-person team to build a multi-tenant workflow platform letting business users design custom processes through a visual React interface, with a separate platform-owner console for tenant administration. An internal API plugin architecture supports 10+ reusable modules, including AI document extraction (Qwen 2.5) and vendor quotation comparison, integrated with Globodox EDMS.
       </p>
       <div class="project-metric">Replaced 4+ hrs/day of manual data entry</div>
       <div class="project-tags">
         <span class="tag green">Qwen 2.5</span>
         <span class="tag">React</span>
         <span class="tag">FastAPI</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Globodox EDMS</span>
         <span class="tag red">Team Lead</span>
+      </div>
+      <div class="project-links">
+        <a class="project-link" href="http://206.189.132.238.nip.io:5177/" target="_blank" rel="noopener">Live App ↗</a>
+        <a class="project-link ghost" href="http://206.189.132.238.nip.io:5178/platform/login" target="_blank" rel="noopener">Platform Owner Console ↗</a>
       </div>
     </div>
 
@@ -521,11 +532,11 @@
         </div>
         <ul class="exp-bullets">
           <li>Architected <span class="highlight">3 end-to-end AI automation pipelines</span> for financial audit and banking compliance workflows using FastAPI, reducing manual review cycles by <span class="highlight">30%</span> across enterprise client engagements.</li>
-          <li>Fine-tuned <span class="highlight">Mistral 7B</span> on 10,000+ domain-specific financial documents for automated report generation, improving data extraction accuracy by <span class="highlight">25%</span>.</li>
-          <li>Spearheaded Generative AI risk and compliance-check solutions, eliminating <span class="highlight">8+ hours of weekly manual validation</span> while strengthening internal controls.</li>
-          <li>Orchestrated multi-step agentic workflows using <span class="highlight">LangChain / LangGraph</span> for autonomous decision-making across 5 financial stages, cutting human intervention by <span class="highlight">40%</span>.</li>
-          <li>Mentored 4 AI junior developers through weekly code reviews, reducing production bug rates by <span class="highlight">35%</span> over 6 months.</li>
-          <li>Collaborated with cross-functional enterprise stakeholders to deploy scalable REST APIs aligned with client risk parameters.</li>
+          <li>Fine-tuned <span class="highlight">Mistral 7B</span> on 10,000+ domain-specific financial documents for automated report generation, improving data extraction accuracy by <span class="highlight">25%</span> using supervised techniques.</li>
+          <li>Led Generative AI risk and compliance-check solutions, eliminating <span class="highlight">8+ hours of weekly manual validation</span> and strengthening internal controls.</li>
+          <li>Built <span class="highlight">multi-step agentic workflows</span> for autonomous decision-making across 5 financial stages, cutting human intervention by <span class="highlight">40%</span>.</li>
+          <li>Mentored 4 junior AI developers through weekly code reviews, promoting secure coding practices and reducing production bug rates by <span class="highlight">35%</span> over 6 months.</li>
+          <li>Collaborated with cross-functional enterprise stakeholders to deploy scalable REST APIs aligned with client risk parameters and business objectives.</li>
         </ul>
       </div>
     </div>
@@ -542,10 +553,10 @@
           <span class="role-badge">Internship</span>
         </div>
         <ul class="exp-bullets">
-          <li>Optimized a Python/OpenCV template-matching module, boosting image-processing speed by <span class="highlight">30%</span> for real-time analysis of 10,000+ daily product assets.</li>
-          <li>Streamlined secure text extraction from 500+ scanned documents per week via <span class="highlight">Tesseract OCR</span> pipelines.</li>
-          <li>Trained a <span class="highlight">CNN image-classification model</span> in PyTorch achieving 92%+ accuracy across 15+ product defect categories on 50,000+ labeled images.</li>
-          <li>Worked across 3 concurrent computer vision projects covering object detection (YOLO) and image segmentation (U-Net).</li>
+          <li>Optimized a Python template-matching module with OpenCV, boosting image-processing speed by <span class="highlight">30%</span> for real-time analysis of 10,000+ daily product assets.</li>
+          <li>Streamlined text extraction from 500+ scanned documents per week using <span class="highlight">Tesseract OCR</span> pipelines, improving downstream accuracy and data integrity.</li>
+          <li>Built a PyTorch <span class="highlight">CNN image-classification model</span> achieving 92%+ accuracy across 15+ product defect categories on 50,000+ labeled images.</li>
+          <li>Gained hands-on experience across 3 concurrent computer vision projects covering object detection (YOLO) and image segmentation (U-Net).</li>
         </ul>
       </div>
     </div>
@@ -566,7 +577,7 @@
         <div class="skill-item"><span class="skill-dot"></span>Python</div>
         <div class="skill-item"><span class="skill-dot"></span>SQL (PostgreSQL, MySQL)</div>
         <div class="skill-item"><span class="skill-dot"></span>Bash</div>
-        <div class="skill-item"><span class="skill-dot"></span>Azure Cloud</div>
+        <div class="skill-item"><span class="skill-dot"></span>Azure Cloud &amp; Azure AI</div>
         <div class="skill-item"><span class="skill-dot"></span>AWS (familiarity)</div>
       </div>
     </div>
@@ -574,9 +585,10 @@
       <div class="skill-group-title">Generative AI &amp; Agents</div>
       <div class="skill-list">
         <div class="skill-item"><span class="skill-dot"></span>Agentic AI Systems</div>
-        <div class="skill-item"><span class="skill-dot"></span>LangGraph &amp; LangChain</div>
+        <div class="skill-item"><span class="skill-dot"></span>MCP (Model Context Protocol)</div>
         <div class="skill-item"><span class="skill-dot"></span>ReAct Agents &amp; CrewAI</div>
         <div class="skill-item"><span class="skill-dot"></span>LLM Fine-tuning (Mistral)</div>
+        <div class="skill-item"><span class="skill-dot"></span>RAG &amp; Embedding Models</div>
         <div class="skill-item"><span class="skill-dot"></span>Prompt Engineering</div>
       </div>
     </div>
@@ -587,7 +599,8 @@
         <div class="skill-item"><span class="skill-dot"></span>PyTorch &amp; TensorFlow</div>
         <div class="skill-item"><span class="skill-dot"></span>Scikit-learn</div>
         <div class="skill-item"><span class="skill-dot"></span>OpenCV &amp; Computer Vision</div>
-        <div class="skill-item"><span class="skill-dot"></span>NLP &amp; OCR</div>
+        <div class="skill-item"><span class="skill-dot"></span>NLP, BERT &amp; Transformers</div>
+        <div class="skill-item"><span class="skill-dot"></span>OCR, YOLO &amp; U-Net</div>
       </div>
     </div>
     <div class="skill-group reveal">
@@ -597,6 +610,7 @@
         <div class="skill-item"><span class="skill-dot"></span>Vector DBs (FAISS, ChromaDB)</div>
         <div class="skill-item"><span class="skill-dot"></span>Ollama</div>
         <div class="skill-item"><span class="skill-dot"></span>Git &amp; Docker</div>
+        <div class="skill-item"><span class="skill-dot"></span>Jira / GitHub (Agile, Scrum)</div>
         <div class="skill-item"><span class="skill-dot"></span>REST APIs</div>
       </div>
     </div>
