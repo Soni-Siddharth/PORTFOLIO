@@ -35,28 +35,10 @@
     .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}@keyframes orbit{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}}
     @media(max-width:850px){.hero-grid{grid-template-columns:1fr;gap:28px}.hero{padding-top:130px}.portrait-stage{min-height:480px;grid-row:1}.portrait-frame{width:min(86%,390px)}.orbit{width:min(70vw,390px)}.hero-content{max-width:720px}.about-grid{grid-template-columns:1fr}.service-grid{grid-template-columns:1fr 1fr}.section-head{align-items:start;flex-direction:column}.floating-tag{right:7%}.nav-links{position:absolute;top:calc(100% + 10px);left:0;right:0;display:none;align-items:stretch;flex-direction:column;padding:12px;border:1px solid var(--line);border-radius:18px;background:rgba(7,10,20,.97)}.nav-links.open{display:flex}.nav-links a{padding:12px 14px}.nav-links .nav-cta{text-align:center}.menu-btn{display:block}}
     @media(max-width:560px){.wrap{width:calc(100% - 30px)}.nav-shell{top:9px}.nav{border-radius:18px;padding-left:15px}.hero{padding-top:105px}.portrait-stage{min-height:400px}.portrait-frame{width:min(92%,340px);padding:0;border-radius:20px}.portrait-frame img{border-radius:15px;max-height:480px}.portrait-caption{left:-5px;bottom:5%;padding:10px 12px}.floating-tag{font-size:.62rem;right:1%;top:11%}h1{font-size:clamp(2.65rem,13vw,4rem)}.hero-subtitle{margin-top:17px}.actions .btn{flex:1}.quick-stats{padding:12px 0}.stat{padding:0 10px}.stat strong{font-size:1.2rem}.stat span{font-size:.62rem}.section{padding:75px 0}.service-grid,.project-grid{grid-template-columns:1fr}.project.featured{grid-column:auto}.service{min-height:0}.facts{gap:9px}.fact{padding:15px}.about-copy,.timeline,.project,.skills-panel{padding:22px}.footer-inner{flex-direction:column}}
-
-    /* Scroll-aware 3D character scene */
-    #scene{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
-    #particles{z-index:0}
-    .nav-shell{z-index:20}main,.footer{position:relative;z-index:2}
-    .hero-grid{position:relative}
-    .avatar-spacer{min-height:530px;pointer-events:none}
-    .hero-content{position:relative;z-index:2}
-    .section,.hero{isolation:isolate}
-    .portrait-stage{display:none!important}
-    @media(max-width:850px){
-      .hero{padding-top:48vh}
-      .hero-grid{grid-template-columns:1fr}
-      .avatar-spacer{min-height:0;height:0}
-    }
-    @media(max-width:560px){.hero{padding-top:46vh}}
-
   </style>
 </head>
 <body>
   <canvas id="particles" aria-hidden="true"></canvas>
-  <canvas id="scene" aria-hidden="true"></canvas>
   <header class="nav-shell"><div class="wrap"><nav class="nav" aria-label="Main navigation">
     <a class="brand" href="#home">Siddharth<span>.</span></a>
     <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">☰</button>
@@ -74,7 +56,11 @@
         <div class="actions"><a class="btn btn-primary" href="#projects">Explore my work <span>↘</span></a><a class="btn btn-secondary" href="mailto:er.sonisiddharth@gmail.com">Contact me ↗</a><a class="btn btn-secondary" href="Siddharth_Soni_Resume.pdf">Résumé ↓</a></div>
         <div class="quick-stats"><div class="stat"><strong>GenAI</strong><span>Core focus</span></div><div class="stat"><strong>RAG + Agents</strong><span>AI systems</span></div><div class="stat"><strong>End-to-end</strong><span>Product delivery</span></div></div>
       </div>
-      <div class="avatar-spacer" aria-hidden="true"></div>
+      <div class="portrait-stage" aria-label="Portrait of Siddharth Soni">
+        <div class="orbit"></div>
+        <div class="portrait-frame" id="character3d"><img src="assets/siddharth-3d-character.png" alt="Full-body 3D-style character of Siddharth Soni wearing a burgundy suit and glasses" fetchpriority="high" draggable="false"><div class="portrait-caption"><strong>Siddharth Soni</strong><span>AI / GenAI Developer · Interactive 3D character</span></div></div>
+        <div class="floating-tag">◉ SYSTEMS THINKING × AI</div>
+      </div>
     </div></section>
 
     <section class="section" id="about"><div class="wrap">
@@ -117,220 +103,6 @@
     <section class="section" id="contact"><div class="wrap"><div class="glass contact reveal"><p class="mono">06 / CONTACT</p><h2>Have a meaningful<br><span class="gradient">problem to solve?</span></h2><p>I'm interested in AI engineering roles and projects where reliable GenAI systems can make a real difference. Let's connect.</p><a class="email" href="mailto:er.sonisiddharth@gmail.com">er.sonisiddharth@gmail.com ↗</a><div class="actions"><a class="btn btn-primary" href="mailto:er.sonisiddharth@gmail.com">Start a conversation ↗</a><a class="btn btn-secondary" href="https://github.com/soni-siddharth" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="btn btn-secondary" href="https://www.linkedin.com/in/er-sonisiddharth/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a class="btn btn-secondary" href="Siddharth_Soni_Resume.pdf">Résumé ↓</a></div></div></div></section>
   </main>
   <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Siddharth Soni</span><span class="footer-note">Designed with curiosity · Built for the web</span><a href="#home">Back to top ↑</a></div></footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-  <script>
-  (() => {
-    const canvas = document.querySelector('#scene');
-    if (!canvas || !window.THREE) { if (canvas) canvas.style.display = 'none'; return; }
-    const THREE = window.THREE;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let renderer;
-    try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); }
-    catch (_) { canvas.style.display = 'none'; return; }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.7));
-    renderer.setSize(window.innerWidth, window.innerHeight, false);
-    renderer.outputEncoding = THREE.sRGBEncoding;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.08;
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, .1, 100);
-    camera.position.set(0, 0, 11.5);
-    scene.add(new THREE.AmbientLight(0xffffff, .72));
-    const key = new THREE.DirectionalLight(0xffe8dd, 1.7); key.position.set(-3, 5, 7); scene.add(key);
-    const fill = new THREE.PointLight(0x7be8ff, 1.8, 20); fill.position.set(4, 2, 1); scene.add(fill);
-    const rim = new THREE.PointLight(0xa795ff, 1.8, 20); rim.position.set(-4, 1, -2); scene.add(rim);
-
-    const material = (color, roughness=.62, metalness=0) => new THREE.MeshStandardMaterial({color, roughness, metalness});
-    const skin = material(0xc98f68, .68), skinLight = material(0xd9a27c, .62);
-    const hair = material(0x17121a, .84), suit = material(0x3d202c, .48), suitLight = material(0x522c3b, .45);
-    const shirt = material(0x10121a, .6), tie = material(0xc21e59, .38), tiePattern = material(0xf36a9d, .42);
-    const glasses = new THREE.MeshStandardMaterial({color:0x9eabbc,metalness:.72,roughness:.25});
-    const white = material(0xf6f2ef,.35), iris = material(0x39251e,.35), black = material(0x100d10,.35);
-    const group = (parent, x=0,y=0,z=0) => { const g=new THREE.Group();g.position.set(x,y,z);parent.add(g);return g; };
-    const mesh = (parent, geo, mat, x=0,y=0,z=0,sx=1,sy=1,sz=1) => {
-      const o=new THREE.Mesh(geo,mat);o.position.set(x,y,z);o.scale.set(sx,sy,sz);parent.add(o);return o;
-    };
-    const box = (parent, mat, x,y,z,sx,sy,sz, rx=0,ry=0,rz=0) => {
-      const o=mesh(parent,new THREE.BoxGeometry(sx,sy,sz),mat,x,y,z);o.rotation.set(rx,ry,rz);return o;
-    };
-    const avatar = group(scene);
-    const torso = group(avatar,0,.05,0);
-    // Suit jacket, shoulders and sleeves
-    mesh(torso,new THREE.SphereGeometry(1,36,28),suit,0,.25,0, .82,.98,.43);
-    mesh(torso,new THREE.BoxGeometry(1.18,1.45,.58),suit,0,.22,0,1,1,1);
-    mesh(torso,new THREE.SphereGeometry(.42,28,20),suitLight,-.63,.78,0,1,.72,.72);
-    mesh(torso,new THREE.SphereGeometry(.42,28,20),suitLight,.63,.78,0,1,.72,.72);
-    // Arms, angled naturally toward the pockets
-    const leftArm=group(torso,-.78,.45,0); leftArm.rotation.z=.12;
-    mesh(leftArm,new THREE.CylinderGeometry(.22,.2,.82,20),suit,0,-.35,0,1,1,1);
-    mesh(leftArm,new THREE.SphereGeometry(.19,20,16),skinLight,.02,-.82,.04,.9,1,.9);
-    const rightArm=group(torso,.78,.45,0); rightArm.rotation.z=-.12;
-    mesh(rightArm,new THREE.CylinderGeometry(.22,.2,.82,20),suit,0,-.35,0,1,1,1);
-    mesh(rightArm,new THREE.SphereGeometry(.19,20,16),skinLight,-.02,-.82,.04,.9,1,.9);
-    // Shirt front, collar, tie and a red pocket square
-    mesh(torso,new THREE.BoxGeometry(.38,1.25,.07),shirt,0,.25,.32);
-    mesh(torso,new THREE.ConeGeometry(.115,.18,4),white,-.12,.78,.37,1,1,.45).rotation.z=Math.PI;
-    mesh(torso,new THREE.ConeGeometry(.115,.18,4),white,.12,.78,.37,1,1,.45).rotation.z=Math.PI;
-    mesh(torso,new THREE.ConeGeometry(.105,.83,4),tie,0,.18,.39,1,1,.55).rotation.z=Math.PI;
-    mesh(torso,new THREE.TorusGeometry(.09,.035,8,16),tiePattern,0,.58,.405,1,.75,.35).rotation.x=Math.PI/2;
-    box(torso,suitLight,-.48,.48,.31,.12,.8,.055,0,0,-.13);
-    box(torso,suitLight,.48,.48,.31,.12,.8,.055,0,0,.13);
-    mesh(torso,new THREE.SphereGeometry(.12,18,12),tie,.5,.45,.37,.85,.55,.35);
-    mesh(torso,new THREE.SphereGeometry(.075,18,12),tiePattern,.5,.48,.4,.9,.55,.35);
-    // Neck and head: slightly tapered jaw, ears, face
-    mesh(avatar,new THREE.CylinderGeometry(.22,.25,.42,24),skin,0,1.12,0);
-    const head=group(avatar,0,1.92,0);
-    mesh(head,new THREE.SphereGeometry(1,48,36),skinLight,0,0,0,.69,.91,.59);
-    mesh(head,new THREE.SphereGeometry(.55,36,24),skinLight,0,-.36,.13,1,.65,.85);
-    [-1,1].forEach(s=>{
-      mesh(head,new THREE.SphereGeometry(.16,20,16),skin,s*.67,-.02,0,.65,1,.7);
-      mesh(head,new THREE.SphereGeometry(.075,16,12),skin,s*.69,-.02,.06,.7,1,.55);
-    });
-    // Hair cap and swept locks
-    mesh(head,new THREE.SphereGeometry(.73,40,28),hair,0,.47,-.015,1, .79,.86);
-    mesh(head,new THREE.SphereGeometry(.52,28,20),hair,-.22,.69,.12,1,.48,.8).rotation.z=-.25;
-    [[-.43,.48,.34,.26,.23,.22,.25],[-.18,.68,.34,.32,.22,.25,-.15],[.13,.68,.3,.35,.22,.25,.12],[.4,.52,.28,.25,.2,.22,-.35],[.55,.32,.18,.17,.23,.2,-.55]].forEach(a=>{
-      const lock=mesh(head,new THREE.SphereGeometry(1,20,14),hair,a[0],a[1],a[2],a[3],a[4],a[5]);lock.rotation.z=a[6];
-    });
-    // Face features and subtle smile
-    const eyes=[];
-    [-1,1].forEach(s=>{
-      mesh(head,new THREE.SphereGeometry(.12,20,14),white,s*.27,.08,.505,1,.78,.38);
-      const pupil=mesh(head,new THREE.SphereGeometry(.065,16,12),iris,s*.27,.075,.548,.95,1,.45);
-      mesh(head,new THREE.SphereGeometry(.035,12,10),black,s*.27,.075,.565);
-      mesh(head,new THREE.SphereGeometry(.018,10,8),white,s*.29,.095,.58);
-      eyes.push({white:head.children[head.children.length-4],pupil});
-      const brow=mesh(head,new THREE.BoxGeometry(.25,.055,.07),hair,s*.27,.245,.5);brow.rotation.z=-s*.07;
-    });
-    mesh(head,new THREE.SphereGeometry(.105,20,16),skin,0,-.06,.57, .72,1,.7);
-    mesh(head,new THREE.TorusGeometry(.17,.025,8,24,Math.PI),material(0x6f3036,.6),0,-.34,.52,1,.55,.25).rotation.z=Math.PI;
-    mesh(head,new THREE.BoxGeometry(.26,.045,.025),white,0,-.37,.54,1,.65,.4);
-    // Metal glasses frames and bridge
-    [-1,1].forEach(s=>{
-      const frame=mesh(head,new THREE.TorusGeometry(.205,.022,8,32),glasses,s*.27,.08,.565,1,.76,.28);
-      frame.rotation.z=0;
-      box(head,glasses,s*.51,.09,.54,.19,.025,.025,0,0,-s*.04);
-    });
-    box(head,glasses,0,.09,.58,.1,.022,.022);
-    // Waist, legs and dress shoes
-    mesh(avatar,new THREE.BoxGeometry(.9,.25,.43),suit,0,-.83,0);
-    [-1,1].forEach(s=>{
-      const leg=group(avatar,s*.25,-1.48,0);
-      mesh(leg,new THREE.CylinderGeometry(.22,.17,1.12,20),suit,0,-.1,0,.95,1,1);
-      mesh(leg,new THREE.CylinderGeometry(.19,.16,.38,20),suitLight,0,-.63,0);
-      mesh(leg,new THREE.BoxGeometry(.3,.16,.55),black,s*.035,-.84,.1);
-      mesh(leg,new THREE.SphereGeometry(.19,20,14),black,s*.035,-.87,.25,1,.55,1.35);
-      for(let i=0;i<3;i++) box(leg,glasses,s*.035,-.82,.24+i*.045,.13,.012,.012);
-    });
-    avatar.scale.setScalar(.92);
-
-    const techItems=[
-      ['Python',0x3976d2],['FastAPI',0x13b981],['React',0x39c8e8],['TypeScript',0x3778c6],
-      ['Gemini',0xa88bff],['Ollama',0xf1f2f6],['RAG',0xf36a9d],['QLoRA',0xe95a9b],
-      ['Mistral',0xff9a5b],['ChromaDB',0xe6c94b],['FAISS',0x7d82f5],['BM25',0x21b5a4],
-      ['OpenCV',0x52c77d],['OCR',0x25c1d7]
-    ];
-    const techGroup=group(scene);
-    const balls=[];
-    function labelTexture(label){
-      const c=document.createElement('canvas');c.width=320;c.height=100;
-      const x=c.getContext('2d');x.clearRect(0,0,320,100);x.font='600 38px Manrope, Arial';x.textAlign='center';x.textBaseline='middle';x.fillStyle='#fff';x.shadowColor='#000';x.shadowBlur=8;x.fillText(label,160,50);
-      const tex=new THREE.CanvasTexture(c);tex.encoding=THREE.sRGBEncoding;return tex;
-    }
-    techItems.forEach((item,i)=>{
-      const r=.34+(i%4)*.055;
-      const matBall=new THREE.MeshStandardMaterial({color:item[1],roughness:.28,metalness:.12,emissive:item[1],emissiveIntensity:.16});
-      const ball=mesh(techGroup,new THREE.SphereGeometry(r,28,20),matBall);
-      const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:labelTexture(item[0]),transparent:true,depthTest:false}));
-      sprite.scale.set(1.25,.39,1);sprite.position.z=r+.035;ball.add(sprite);
-      ball.position.set((Math.random()-.5)*5,(Math.random()-.5)*3,0);
-      balls.push({ball,r,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3});
-    });
-
-    const poses={
-      hero:{x:2.65,y:-.45,s:1.05,ry:-.13},
-      about:{x:-2.65,y:-.45,s:1.02,ry:.16},
-      expertise:{x:2.65,y:-.4,s:1,ry:-.13},
-      experience:{x:-2.65,y:-.45,s:.94,ry:.14},
-      projects:{x:2.7,y:-.55,s:.94,ry:-.12},
-      stack:{x:0,y:-.7,s:0,ry:0},
-      contact:{x:2.8,y:-1.05,s:.72,ry:-.1}
-    };
-    const mobilePoses={
-      hero:{x:0,y:1.3,s:.53,ry:0},about:{x:1.65,y:.1,s:.58,ry:-.12},
-      expertise:{x:1.65,y:.05,s:.58,ry:-.12},experience:{x:-1.65,y:.05,s:.58,ry:.12},
-      projects:{x:1.65,y:.05,s:.56,ry:-.12},stack:{x:0,y:-.7,s:0,ry:0},contact:{x:1.7,y:-.2,s:.5,ry:-.1}
-    };
-    const sections=[...document.querySelectorAll('[data-scene-pose]')];
-    let active='hero', isMobile=window.innerWidth<760;
-    function detectSection(){
-      const mid=window.innerHeight*.5;
-      let found='hero';
-      for(const el of sections){const r=el.getBoundingClientRect();if(r.top<=mid&&r.bottom>mid){found=el.dataset.scenePose;break;}}
-      active=found;
-    }
-    // Use the existing page sections as the character's scroll choreography.
-    document.querySelectorAll('#home').forEach(el=>el.dataset.scenePose='hero');
-    document.querySelectorAll('#about').forEach(el=>el.dataset.scenePose='about');
-    document.querySelectorAll('#expertise').forEach(el=>el.dataset.scenePose='expertise');
-    document.querySelectorAll('#experience').forEach(el=>el.dataset.scenePose='experience');
-    document.querySelectorAll('#projects').forEach(el=>el.dataset.scenePose='projects');
-    document.querySelectorAll('#stack').forEach(el=>el.dataset.scenePose='stack');
-    document.querySelectorAll('#contact').forEach(el=>el.dataset.scenePose='contact');
-    sections.splice(0,sections.length,...document.querySelectorAll('[data-scene-pose]'));
-
-    const pointer={x:0,y:0,active:false,last:0};
-    window.addEventListener('pointermove',e=>{pointer.x=e.clientX/window.innerWidth*2-1;pointer.y=-(e.clientY/window.innerHeight*2-1);pointer.active=true;pointer.last=performance.now();},{passive:true});
-    window.addEventListener('resize',()=>{
-      isMobile=window.innerWidth<760;camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth,window.innerHeight,false);
-    },{passive:true});
-    const clock=new THREE.Clock();
-    let blinkTimer=2.3, blinkUntil=0;
-    function frame(){
-      requestAnimationFrame(frame);
-      if(document.hidden)return;
-      const dt=Math.min(clock.getDelta(),.04),t=clock.elapsedTime,k=1-Math.exp(-dt*4.5);
-      detectSection();
-      const pose=(isMobile?mobilePoses:poses)[active]||poses.hero;
-      avatar.position.x+=(pose.x-avatar.position.x)*k;
-      avatar.position.y+=(pose.y+(!reduceMotion?Math.sin(t*1.5)*.035:0)-avatar.position.y)*k;
-      const currentScale=avatar.scale.x;
-      const nextScale=currentScale+(pose.s-currentScale)*k;
-      avatar.scale.setScalar(Math.max(.001,nextScale));
-      avatar.visible=nextScale>.025;
-      avatar.rotation.y+=(pose.ry-avatar.rotation.y)*k;
-      if(avatar.visible){
-        const tx=pointer.active&&performance.now()-pointer.last<4000?pointer.x*.65:Math.sin(t*.45)*.15;
-        const ty=pointer.active&&performance.now()-pointer.last<4000?pointer.y*.45:Math.sin(t*.35)*.08;
-        avatar.children[avatar.children.length-1]; // keep scene graph stable for animation
-        const headNode=avatar.children.find(o=>o.type==='Group'&&o.position.y===1.92);
-        if(headNode){headNode.rotation.y+=(THREE.MathUtils.clamp(tx-pose.x*.06,-.48,.48)-headNode.rotation.y)*k;headNode.rotation.x+=(THREE.MathUtils.clamp(ty,-.24,.24)-headNode.rotation.x)*k;}
-      }
-      const showTech=active==='stack';
-      techGroup.visible=showTech;
-      if(showTech){
-        const halfH=Math.tan(THREE.MathUtils.degToRad(camera.fov/2))*camera.position.z,halfW=halfH*camera.aspect;
-        balls.forEach((b,i)=>{
-          if(!reduceMotion){
-            b.ball.position.x+=b.vx*dt*2;b.ball.position.y+=b.vy*dt*2;
-            if(b.ball.position.x>halfW*.8||b.ball.position.x< -halfW*.8)b.vx*=-1;
-            if(b.ball.position.y>halfH*.55||b.ball.position.y< -halfH*.55)b.vy*=-1;
-            const dx=b.ball.position.x-pointer.x*halfW,dy=b.ball.position.y-pointer.y*halfH,d=Math.hypot(dx,dy);
-            if(pointer.active&&d<1.8){b.vx+=dx/(d||1)*dt*.8;b.vy+=dy/(d||1)*dt*.8;}
-            b.vx*=.995;b.vy*=.995;
-          }
-          b.ball.rotation.y+=dt*.25;
-        });
-      }
-      renderer.render(scene,camera);
-    }
-    frame();
-  })();
-  </script>
-
   <script>
     (() => {
       const menuBtn = document.querySelector('#menuBtn');
