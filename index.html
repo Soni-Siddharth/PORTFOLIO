@@ -1,639 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Siddharth Soni — AI Engineer</title>
-<meta name="description" content="Siddharth Soni is an AI/ML Engineer building production-grade Generative AI systems — agentic pipelines, RAG, and LLM fine-tuning for financial audit and compliance automation." />
-<meta property="og:title" content="Siddharth Soni — AI Engineer" />
-<meta property="og:description" content="AI/ML Engineer building production-grade Generative AI and agentic systems for financial audit, compliance, and document automation." />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="Siddharth.jpg" />
-<meta name="twitter:card" content="summary_large_image" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
-<style>
-  :root {
-    --bg: #05070d;
-    --text: #e9eff9;
-    --dim: #9aa8c2;
-    --faint: #66738f;
-    --accent: #4cc9f0;
-    --accent2: #7c6cff;
-    --glass: rgba(255, 255, 255, 0.055);
-    --glass-hi: rgba(255, 255, 255, 0.09);
-    --edge: rgba(255, 255, 255, 0.13);
-    --radius: 22px;
-    --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
-    --body: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-  body {
-    font-family: var(--body); color: var(--text); line-height: 1.65; overflow-x: hidden;
-    background:
-      radial-gradient(60rem 28rem at 50% 108%, rgba(35, 120, 190, .38), transparent 70%),
-      radial-gradient(40rem 30rem at 85% -5%, rgba(124, 108, 255, .16), transparent 70%),
-      var(--bg);
-    background-attachment: fixed;
-  }
-  ::selection { background: rgba(76, 201, 240, .3); }
-  a { color: inherit; }
-  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 10px; }
-  .cursor-glow { position: fixed; left: 0; top: 0; width: 280px; height: 280px; margin: -140px 0 0 -140px; border-radius: 50%; background: radial-gradient(circle, rgba(76,201,240,.16), transparent 65%); pointer-events: none; z-index: 2; opacity: 0; transition: opacity .3s; mix-blend-mode: screen; }
-  @media (hover: none) { .cursor-glow { display: none; } }
-  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-
-  #scene { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
-  main, footer { position: relative; z-index: 1; }
-
-  .glass {
-    background: var(--glass);
-    -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
-    border: 1px solid var(--edge);
-    box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 24px 60px -28px rgba(0,0,0,.8);
-    border-radius: var(--radius);
-  }
-  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .glass { background: rgba(20, 26, 40, .88); } }
-
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
-
-  /* Nav */
-  header.site { position: fixed; top: 14px; left: 0; right: 0; z-index: 50; }
-  .nav { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px 10px 24px; border-radius: 999px; background: rgba(10, 14, 24, .6); }
-  .brand { font-family: var(--display); font-weight: 700; text-decoration: none; letter-spacing: -.01em; }
-  .nav-links { display: flex; align-items: center; gap: 4px; }
-  .nav-links a { text-decoration: none; font-size: .9rem; font-weight: 500; color: var(--dim); padding: 8px 14px; border-radius: 999px; transition: background .2s, color .2s; }
-  .nav-links a:hover { background: var(--glass-hi); color: #fff; }
-  .nav-links a.cta { background: var(--text); color: #05070d; margin-left: 6px; }
-  .nav-links a.cta:hover { background: var(--accent); }
-  .nav-toggle { display: none; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--edge); background: var(--glass); color: var(--text); font-size: 1.1rem; cursor: pointer; }
-
-  /* Generic section + copy blocks (character lives in the empty half) */
-  .panel { min-height: 100vh; display: flex; align-items: center; padding: 110px 0 70px; }
-  .copy { width: min(540px, 48%); }
-  .copy.right { margin-left: auto; }
-  h1, h2 { font-family: var(--display); letter-spacing: -.035em; line-height: 1.05; }
-  h1 { font-size: clamp(2.6rem, 5.4vw, 4.5rem); font-weight: 700; margin-bottom: 18px; }
-  h1 small { display: block; font-size: .4em; font-weight: 500; letter-spacing: -.01em; color: var(--accent); margin-top: 14px; }
-  h2 { font-size: clamp(2rem, 3.8vw, 3rem); margin-bottom: 18px; }
-  .lede { font-size: 1.06rem; color: var(--dim); margin-bottom: 28px; }
-  .status { display: inline-flex; align-items: center; gap: 10px; padding: 7px 16px; border-radius: 999px; font-size: .85rem; color: var(--dim); margin-bottom: 24px; }
-  .status::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #34e0a1; box-shadow: 0 0 0 4px rgba(52,224,161,.2); }
-  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 34px; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 13px 24px; border-radius: 14px; font-weight: 600; font-size: .92rem; text-decoration: none; border: 1px solid transparent; transition: transform .2s, box-shadow .2s, background .2s; cursor: pointer; }
-  .btn:hover { transform: translateY(-2px); }
-  .btn-primary { background: linear-gradient(135deg, var(--accent), #2f7bff); color: #03101c; box-shadow: 0 12px 30px -10px rgba(76,201,240,.6); }
-  .btn-glass { background: var(--glass); border-color: var(--edge); color: var(--text); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
-  .btn-glass:hover { background: var(--glass-hi); }
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); padding: 6px; }
-  .stat { padding: 14px 16px; }
-  .stat + .stat { border-left: 1px solid var(--edge); }
-  .stat b { display: block; font-family: var(--display); font-size: 1.6rem; letter-spacing: -.02em; line-height: 1.1; }
-  .stat span { font-size: .78rem; color: var(--faint); }
-  .scroll-hint { margin-top: 26px; font-size: .82rem; color: var(--faint); }
-
-  /* About */
-  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
-  .fact { padding: 16px 18px; }
-  .fact b { display: block; font-family: var(--display); font-size: 1rem; }
-  .fact span { font-size: .84rem; color: var(--faint); }
-
-  /* What I do */
-  .services { display: grid; gap: 14px; }
-  .service { padding: 24px 26px; transition: background .25s, transform .25s; }
-  .service:hover { background: var(--glass-hi); transform: translateX(4px); }
-  .service h3 { font-family: var(--display); font-size: 1.15rem; margin-bottom: 6px; letter-spacing: -.01em; }
-  .service p { color: var(--dim); font-size: .94rem; }
-
-  /* Career */
-  .timeline { padding: 30px; }
-  .when { font-size: .86rem; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
-  .org { font-family: var(--display); font-size: 1.5rem; letter-spacing: -.02em; }
-  .loc { font-size: .86rem; color: var(--faint); margin-bottom: 18px; }
-  .role { font-family: var(--display); font-size: 1.1rem; margin-bottom: 14px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-  .badge { font-family: var(--body); font-size: .74rem; font-weight: 600; padding: 4px 12px; border-radius: 999px; background: rgba(52,224,161,.14); color: #5eeab5; }
-  .timeline ul { list-style: none; display: grid; gap: 12px; }
-  .timeline li { position: relative; padding-left: 22px; color: var(--dim); font-size: .94rem; }
-  .timeline li::before { content: ''; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); }
-  .timeline li b { color: #fff; font-weight: 600; }
-
-  /* Projects */
-  .projects { padding: 90px 0; }
-  .sec-head { margin-bottom: 34px; max-width: 620px; }
-  .sec-head p { color: var(--dim); }
-  .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
-  .card { padding: 30px; display: flex; flex-direction: column; gap: 14px; transition: transform .25s, background .25s; background: rgba(12, 17, 28, .55); }
-  .card:hover { transform: translateY(-3px); background: rgba(22, 30, 48, .7); }
-  .card.feature { grid-column: span 6; flex-direction: row; gap: 32px; align-items: flex-start; padding: 34px; }
-  .card.half { grid-column: span 3; }
-  .ico { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; font-size: 1.3rem; background: linear-gradient(145deg, rgba(76,201,240,.18), rgba(124,108,255,.18)); border: 1px solid var(--edge); flex-shrink: 0; }
-  .card h3 { font-family: var(--display); font-size: 1.3rem; letter-spacing: -.02em; line-height: 1.2; }
-  .kind { font-size: .82rem; color: var(--accent); font-weight: 600; }
-  .card p { color: var(--dim); font-size: .94rem; }
-  .card .body { display: flex; flex-direction: column; gap: 12px; flex: 1; }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
-  .chip { font-size: .76rem; font-weight: 500; padding: 5px 12px; border-radius: 999px; background: var(--glass); border: 1px solid var(--edge); color: var(--dim); }
-  .links { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 6px; }
-  .links a { font-size: .86rem; font-weight: 600; text-decoration: none; padding: 9px 16px; border-radius: 12px; background: var(--text); color: #05070d; transition: background .2s; }
-  .links a:hover { background: var(--accent); }
-  .links a.ghost { background: var(--glass); color: var(--text); border: 1px solid var(--edge); }
-  .links a.ghost:hover { background: var(--glass-hi); }
-
-  /* Tech stack (spheres are drawn on the canvas behind this) */
-  .stack { min-height: 100vh; padding: 110px 0 70px; text-align: center; }
-  .stack p { color: var(--dim); }
-
-  /* Contact */
-  .contact-wrap { min-height: 80vh; display: flex; align-items: center; padding: 70px 0 40px; }
-  .contact { padding: 52px 32px; text-align: center; max-width: 680px; margin: 0 auto; background: rgba(12, 17, 28, .6); }
-  .contact h2 { margin-bottom: 10px; }
-  .contact p { color: var(--dim); margin-bottom: 24px; }
-  .mail { display: inline-block; font-family: var(--display); font-weight: 600; font-size: clamp(1.1rem, 3vw, 1.7rem); text-decoration: none; color: var(--accent); margin-bottom: 26px; word-break: break-all; border-bottom: 2px solid rgba(76,201,240,.3); transition: border-color .2s; }
-  .mail:hover { border-color: var(--accent); }
-  .contact .btn-row { justify-content: center; margin-bottom: 0; }
-  footer { padding: 30px 0 40px; color: var(--faint); font-size: .85rem; }
-  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-
-  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-  .hero .copy > * { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
-  .hero .copy > *:nth-child(2) { animation-delay: .08s; } .hero .copy > *:nth-child(3) { animation-delay: .16s; }
-  .hero .copy > *:nth-child(4) { animation-delay: .24s; } .hero .copy > *:nth-child(5) { animation-delay: .32s; }
-  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
-
-  @media (max-width: 860px) {
-    .wrap { padding: 0 18px; }
-    .nav { padding: 8px 10px 8px 20px; border-radius: 22px; position: relative; }
-    .nav-toggle { display: block; }
-    .nav-links { position: absolute; top: calc(100% + 10px); left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 4px; padding: 14px; border-radius: 22px; background: rgba(10, 14, 24, .96); border: 1px solid var(--edge); opacity: 0; pointer-events: none; transform: translateY(-8px); transition: opacity .2s, transform .2s; }
-    .nav-links.open { opacity: 1; pointer-events: auto; transform: none; }
-    .nav-links a { padding: 12px 14px; }
-    .nav-links a.cta { margin: 6px 0 0; text-align: center; }
-    .copy { width: 100%; }
-    .hero { align-items: flex-start; padding-top: 52vh; }
-    .panel { min-height: auto; padding: 80px 0; }
-    .card.feature { flex-direction: column; gap: 14px; }
-    .card.half { grid-column: span 6; }
-    .facts { grid-template-columns: 1fr; }
-    .stack { min-height: 90vh; }
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070912">
+  <meta name="description" content="Siddharth Soni — AI / GenAI Developer building production-ready agentic systems, document AI, and intelligent workflows.">
+  <meta property="og:title" content="Siddharth Soni — AI Engineer">
+  <meta property="og:description" content="Production AI systems, agentic workflows, document intelligence, and full-stack AI products.">
+  <meta property="og:image" content="assets/siddharth-soni.jpg">
+  <title>Siddharth Soni — AI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#070912;--panel:rgba(18,22,39,.74);--line:rgba(205,219,255,.14);--text:#f3f5ff;--muted:#a3acc5;--cyan:#7be8ff;--violet:#a795ff;--green:#8df3c4;--max:1180px}
+    *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{font-family:Manrope,system-ui,sans-serif;color:var(--text);background:radial-gradient(ellipse at 80% 12%,rgba(94,75,191,.17),transparent 35%),radial-gradient(ellipse at 20% 65%,rgba(29,157,187,.12),transparent 35%),var(--bg);line-height:1.65;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:58px 58px;mask-image:linear-gradient(to bottom,black,transparent 82%)}
+    a{color:inherit;text-decoration:none}button,a{ -webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+    .wrap{width:min(var(--max),calc(100% - 44px));margin-inline:auto}.mono,.eyebrow,.nav a,.pill,.project-type,.footer-note{font-family:"DM Mono",monospace}
+    .mono{font-size:.78rem;letter-spacing:.07em;color:var(--cyan);text-transform:uppercase}
+    .nav-shell{position:fixed;top:14px;left:0;right:0;z-index:20}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:11px 14px 11px 22px;border:1px solid var(--line);border-radius:999px;background:rgba(8,11,22,.78);backdrop-filter:blur(18px)}
+    .brand{font-weight:800;letter-spacing:-.05em}.brand span{color:var(--cyan)}.nav-links{display:flex;align-items:center;gap:5px}.nav-links a{font-size:.78rem;color:var(--muted);padding:9px 13px;border-radius:99px;transition:.2s}.nav-links a:hover{color:white;background:rgba(255,255,255,.07)}.nav-links .nav-cta{color:#071018;background:var(--cyan);font-weight:700}.menu-btn{display:none;border:1px solid var(--line);background:transparent;color:white;border-radius:50%;width:40px;height:40px;font-size:1.15rem}
+    #particles{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;opacity:.72}
+    section{position:relative}.hero{min-height:100svh;display:flex;align-items:center;padding:142px 0 78px}.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:7vw}.availability{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.035);padding:7px 12px;color:#c6d1e8;font-size:.75rem;margin-bottom:25px}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 13px var(--green)}
+    h1,h2,h3{letter-spacing:-.055em;line-height:1.1}h1{font-size:clamp(3rem,6.2vw,5.9rem);font-weight:800;max-width:740px}h1 .gradient{background:linear-gradient(100deg,var(--cyan),#b2a6ff 76%);background-clip:text;-webkit-background-clip:text;color:transparent}.hero-subtitle{font-size:clamp(1rem,1.5vw,1.2rem);color:#c0c8dc;margin:24px 0 15px}.hero-copy{max-width:660px;color:var(--muted);font-size:1rem}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:29px 0 32px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 18px;border-radius:12px;border:1px solid var(--line);font-weight:700;font-size:.87rem;transition:transform .2s,border-color .2s,background .2s}.btn:hover{transform:translateY(-3px)}.btn-primary{background:var(--cyan);color:#06111a;border-color:transparent;box-shadow:0 10px 34px rgba(123,232,255,.14)}.btn-secondary{background:rgba(255,255,255,.04)}.btn-secondary:hover{border-color:rgba(123,232,255,.5)}
+    .quick-stats{display:flex;gap:0;max-width:530px;border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:15px;padding:16px 4px}.stat{flex:1;padding:0 16px}.stat+.stat{border-left:1px solid var(--line)}.stat strong{display:block;font-size:1.45rem;letter-spacing:-.06em}.stat span{font-size:.7rem;color:var(--muted)}
+    .portrait-stage{position:relative;display:grid;place-items:center;min-height:500px;isolation:isolate}.orbit{position:absolute;width:min(35vw,440px);aspect-ratio:1;border:1px solid rgba(123,232,255,.24);border-radius:50%;box-shadow:0 0 80px rgba(81,126,255,.08),inset 0 0 60px rgba(123,232,255,.035);animation:orbit 30s linear infinite;z-index:-1}.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid rgba(167,149,255,.22);border-radius:50%;inset:10% -6%;transform:rotate(55deg)}.orbit:after{inset:20% -10%;transform:rotate(-48deg)}.portrait-frame{width:min(100%,390px);position:relative;padding:9px;border:1px solid rgba(180,219,255,.3);border-radius:28px;background:linear-gradient(145deg,rgba(123,232,255,.15),rgba(167,149,255,.08),rgba(255,255,255,.02));box-shadow:0 30px 100px rgba(0,0,0,.45),0 0 60px rgba(75,181,220,.1);transform:rotate(2deg);transition:transform .35s}.portrait-frame:hover{transform:rotate(0) translateY(-5px)}.portrait-frame img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 35%;border-radius:20px;filter:saturate(.9)}.portrait-caption{position:absolute;bottom:22px;left:-26px;right:22px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:rgba(7,10,20,.86);backdrop-filter:blur(14px);box-shadow:0 12px 35px #0005}.portrait-caption strong{display:block;font-size:.85rem}.portrait-caption span{font-size:.72rem;color:var(--muted)}.floating-tag{position:absolute;top:15%;right:-5%;padding:10px 13px;border:1px solid var(--line);border-radius:12px;background:rgba(9,13,25,.8);font: .72rem "DM Mono",monospace;color:#d7eaff;backdrop-filter:blur(12px)}
+    .section{padding:105px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:34px}.section-head h2{font-size:clamp(2.1rem,4vw,3.5rem);margin-top:12px}.section-head p{max-width:430px;color:var(--muted);font-size:.94rem}.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.glass{border:1px solid var(--line);border-radius:20px;background:var(--panel);backdrop-filter:blur(14px);box-shadow:0 20px 65px rgba(0,0,0,.12)}.about-copy{padding:30px}.about-copy p{color:var(--muted);margin-top:15px}.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fact{padding:20px}.fact .mono{font-size:.68rem}.fact strong{display:block;font-size:1rem;margin-top:9px}.fact small{display:block;color:var(--muted);font-size:.78rem;margin-top:3px}
+    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.service{padding:24px;min-height:225px;transition:transform .25s,border-color .25s}.service:hover,.project:hover{transform:translateY(-5px);border-color:rgba(123,232,255,.4)}.service-icon{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);border-radius:13px;color:var(--cyan);font-size:1.25rem;background:rgba(123,232,255,.06);margin-bottom:23px}.service h3{font-size:1.18rem;letter-spacing:-.035em;margin-bottom:10px}.service p{font-size:.86rem;color:var(--muted)}
+    .timeline{padding:30px}.timeline-top{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.timeline h3{font-size:1.4rem;margin:7px 0}.timeline .location{font-size:.8rem;color:var(--muted)}.badge{font-size:.7rem;padding:5px 10px;border:1px solid rgba(141,243,196,.25);border-radius:99px;color:var(--green);height:max-content}.timeline ul{margin-top:22px;list-style:none;display:grid;gap:12px}.timeline li{position:relative;padding-left:20px;color:var(--muted);font-size:.9rem}.timeline li:before{content:"";position:absolute;left:0;top:.7em;width:6px;height:6px;background:var(--cyan);border-radius:50%}.timeline li strong{color:#edf4ff}
+    .project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.project{padding:26px;min-height:270px;display:flex;flex-direction:column;gap:13px;transition:transform .25s,border-color .25s}.project.featured{grid-column:span 2;min-height:230px}.project-top{display:flex;justify-content:space-between;gap:14px;align-items:center}.project-type{font-size:.7rem;color:var(--cyan);text-transform:uppercase;letter-spacing:.07em}.project-num{font: .78rem "DM Mono",monospace;color:#65708c}.project h3{font-size:1.45rem}.project p{color:var(--muted);font-size:.9rem;max-width:790px}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto;padding-top:8px}.pill{font-size:.68rem;color:#c0cbe3;border:1px solid var(--line);border-radius:99px;padding:5px 9px;background:rgba(255,255,255,.025)}
+    .skills-panel{padding:32px}.skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.skill{padding:10px 14px;border:1px solid var(--line);border-radius:10px;color:#d7e2f7;background:rgba(255,255,255,.03);font-size:.82rem;transition:background .2s,border-color .2s}.skill:hover{background:rgba(123,232,255,.08);border-color:rgba(123,232,255,.35)}.contact{padding:clamp(28px,6vw,64px);text-align:center;position:relative;overflow:hidden}.contact:before{content:"";position:absolute;width:400px;height:250px;left:50%;top:-220px;transform:translateX(-50%);background:var(--cyan);filter:blur(130px);opacity:.13;pointer-events:none}.contact h2{font-size:clamp(2.3rem,5vw,4.3rem);margin:12px 0 15px}.contact p{color:var(--muted);max-width:560px;margin:0 auto}.contact .actions{justify-content:center;margin-bottom:0}.email{display:inline-block;color:var(--cyan);margin-top:19px;font-size:clamp(1rem,2vw,1.25rem);overflow-wrap:anywhere}.footer{padding:25px 0 35px;color:#77829c;font-size:.75rem}.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px}.footer a:hover{color:var(--cyan)}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}@keyframes orbit{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}}
+    @media(max-width:850px){.hero-grid{grid-template-columns:1fr;gap:28px}.hero{padding-top:130px}.portrait-stage{min-height:440px;grid-row:1}.portrait-frame{width:min(68%,340px)}.orbit{width:min(70vw,390px)}.hero-content{max-width:720px}.about-grid{grid-template-columns:1fr}.service-grid{grid-template-columns:1fr 1fr}.section-head{align-items:start;flex-direction:column}.floating-tag{right:7%}.nav-links{position:absolute;top:calc(100% + 10px);left:0;right:0;display:none;align-items:stretch;flex-direction:column;padding:12px;border:1px solid var(--line);border-radius:18px;background:rgba(7,10,20,.97)}.nav-links.open{display:flex}.nav-links a{padding:12px 14px}.nav-links .nav-cta{text-align:center}.menu-btn{display:block}}
+    @media(max-width:560px){.wrap{width:calc(100% - 30px)}.nav-shell{top:9px}.nav{border-radius:18px;padding-left:15px}.hero{padding-top:105px}.portrait-stage{min-height:365px}.portrait-frame{width:min(72%,285px);padding:6px;border-radius:20px}.portrait-frame img{border-radius:15px}.portrait-caption{left:-18px;bottom:15px;padding:10px 12px}.floating-tag{font-size:.62rem;right:1%;top:11%}h1{font-size:clamp(2.65rem,13vw,4rem)}.hero-subtitle{margin-top:17px}.actions .btn{flex:1}.quick-stats{padding:12px 0}.stat{padding:0 10px}.stat strong{font-size:1.2rem}.stat span{font-size:.62rem}.section{padding:75px 0}.service-grid,.project-grid{grid-template-columns:1fr}.project.featured{grid-column:auto}.service{min-height:0}.facts{gap:9px}.fact{padding:15px}.about-copy,.timeline,.project,.skills-panel{padding:22px}.footer-inner{flex-direction:column}}
+  </style>
 </head>
 <body>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <header class="nav-shell"><div class="wrap"><nav class="nav" aria-label="Main navigation">
+    <a class="brand" href="#home">Siddharth<span>.</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <div class="nav-links" id="navLinks"><a href="#about">About</a><a href="#expertise">Expertise</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#stack">Stack</a><a class="nav-cta" href="#contact">Let's talk ↗</a></div>
+  </nav></div></header>
 
-<canvas id="scene" aria-hidden="true"></canvas>
-<div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
-
-<header class="site">
-  <div class="wrap">
-    <nav class="nav glass" aria-label="Main">
-      <a class="brand" href="#top">Siddharth Soni</a>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
-      <div class="nav-links" id="nav-links">
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#projects">Projects</a>
-        <a href="#stack">Stack</a>
-        <a href="#contact">Contact</a>
-        <a class="cta" href="Siddharth_Soni_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+  <main>
+    <section class="hero" id="home"><div class="wrap hero-grid">
+      <div class="hero-content">
+        <div class="availability"><span class="dot"></span> Open to AI / GenAI opportunities</div>
+        <p class="mono">AI ENGINEER · JAIPUR, INDIA</p>
+        <h1 style="margin-top:13px">Building useful AI.<br><span class="gradient">Beyond the prompt.</span></h1>
+        <p class="hero-subtitle">Hi, I'm Siddharth Soni — AI / GenAI Developer.</p>
+        <p class="hero-copy">I build production-ready AI systems for document-heavy and operational workflows: agentic pipelines, retrieval-augmented generation, OCR, and full-stack applications that help teams turn manual work into reliable outcomes.</p>
+        <div class="actions"><a class="btn btn-primary" href="#projects">Explore my work <span>↘</span></a><a class="btn btn-secondary" href="mailto:er.sonisiddharth@gmail.com">Contact me ↗</a><a class="btn btn-secondary" href="Siddharth_Soni_Resume.pdf">Résumé ↓</a></div>
+        <div class="quick-stats"><div class="stat"><strong>GenAI</strong><span>Core focus</span></div><div class="stat"><strong>RAG + Agents</strong><span>AI systems</span></div><div class="stat"><strong>End-to-end</strong><span>Product delivery</span></div></div>
       </div>
-    </nav>
-  </div>
-</header>
-
-<main id="top">
-
-  <section class="panel hero" data-pose="hero">
-    <div class="wrap">
-      <div class="copy">
-        <div class="status glass">Open to new opportunities</div>
-        <h1>Hello, I'm Siddharth Soni<small>AI Engineer · Generative AI &amp; agentic systems</small></h1>
-        <p class="lede">I build production AI systems for financial audit, compliance, and document-heavy workflows — fine-tuning LLMs, orchestrating multi-agent pipelines, and shipping full-stack apps that turn manual review into automated decisions.</p>
-        <div class="btn-row">
-          <a href="#projects" class="btn btn-primary">View projects</a>
-          <a href="Siddharth_Soni_Resume.pdf" target="_blank" rel="noopener" class="btn btn-glass">Download résumé</a>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=er.sonisiddharth@gmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-glass">Get in touch</a>
-        </div>
-        <div class="stats glass">
-          <div class="stat"><b>2+</b><span>Years experience</span></div>
-          <div class="stat"><b>30%</b><span>Faster review cycles</span></div>
-          <div class="stat"><b>98%</b><span>Extraction accuracy</span></div>
-        </div>
+      <div class="portrait-stage" aria-label="Portrait of Siddharth Soni">
+        <div class="orbit"></div>
+        <div class="portrait-frame"><img src="assets/siddharth-soni.jpg" alt="Siddharth Soni wearing a dark suit and glasses" fetchpriority="high"><div class="portrait-caption"><strong>Siddharth Soni</strong><span>AI / GenAI Developer · Building intelligent systems</span></div></div>
+        <div class="floating-tag">◉ SYSTEMS THINKING × AI</div>
       </div>
-    </div>
-  </section>
+    </div></section>
 
-  <section class="panel" id="about" data-pose="about">
-    <div class="wrap">
-      <div class="copy right">
-        <h2>About me</h2>
-        <p class="lede">I'm an AI/GenAI developer based in Jaipur, working at Moksha. I turn slow, manual document and audit work into reliable AI pipelines — from OCR and retrieval to LLM fine-tuning and the apps that put them in people's hands.</p>
-        <div class="facts">
-          <div class="fact glass"><b>Moksha</b><span>AI / GenAI Developer</span></div>
-          <div class="fact glass"><b>Jaipur, India</b><span>Location</span></div>
-          <div class="fact glass"><b>B.Tech, 2024</b><span>Computer Engineering (AI)</span></div>
-          <div class="fact glass"><b>1.5–2 years</b><span>Full-time, plus internships</span></div>
-        </div>
+    <section class="section" id="about"><div class="wrap">
+      <div class="section-head reveal"><div><p class="mono">01 / ABOUT</p><h2>Engineering intelligence<br>into real workflows.</h2></div><p>I work across the AI stack — from document ingestion and retrieval to model orchestration, APIs, and interfaces people can use.</p></div>
+      <div class="about-grid reveal"><article class="glass about-copy"><p class="mono">A LITTLE ABOUT ME</p><p>I'm an AI / GenAI Developer at Moksha, based in Jaipur, India. My work focuses on turning complex operational processes into dependable software using LLMs, OCR, retrieval systems, and thoughtful application design.</p><p>I enjoy solving the unglamorous but important parts of AI products: messy documents, structured extraction, human approval loops, persistent context, and outputs that fit existing business workflows.</p></article>
+        <div class="facts"><div class="glass fact"><span class="mono">CURRENT ROLE</span><strong>AI / GenAI Developer</strong><small>Moksha · Full-time</small></div><div class="glass fact"><span class="mono">LOCATION</span><strong>Jaipur, India</strong><small>Open to remote roles</small></div><div class="glass fact"><span class="mono">EDUCATION</span><strong>B.Tech, 2024</strong><small>Computer Engineering (AI)</small></div><div class="glass fact"><span class="mono">FOCUS</span><strong>Applied GenAI</strong><small>RAG · Agents · Document AI</small></div></div>
       </div>
-    </div>
-  </section>
+    </div></section>
 
-  <section class="panel" id="work" data-pose="what">
-    <div class="wrap">
-      <div class="copy">
-        <h2>What I do</h2>
-        <div class="services">
-          <div class="service glass"><h3>LLM &amp; agentic systems</h3><p>Audit and compliance pipelines on Gemini and open models, with approval workflows and memory.</p></div>
-          <div class="service glass"><h3>Document AI &amp; OCR</h3><p>Extraction from messy PDFs — multi-page tables, structured fields, and generated documents.</p></div>
-          <div class="service glass"><h3>Full-stack AI apps</h3><p>FastAPI backends and React frontends that make the models usable by real teams.</p></div>
-        </div>
+    <section class="section" id="expertise"><div class="wrap"><div class="section-head reveal"><div><p class="mono">02 / EXPERTISE</p><h2>From model to product.</h2></div><p>Practical AI engineering with an emphasis on reliability, integration, and measurable workflow value.</p></div>
+      <div class="service-grid">
+        <article class="glass service reveal"><div class="service-icon">✳</div><h3>LLMs & Agentic Systems</h3><p>LLM orchestration, multi-agent workflows, approval steps, persistent memory, and integrations with hosted and local models.</p></article>
+        <article class="glass service reveal"><div class="service-icon">⌘</div><h3>Document AI & OCR</h3><p>PDF parsing, multi-page table stitching, structured extraction, retrieval pipelines, and document generation.</p></article>
+        <article class="glass service reveal"><div class="service-icon">◈</div><h3>Full-stack AI Apps</h3><p>FastAPI and Flask services with React / TypeScript interfaces, databases, and workflow-focused user experiences.</p></article>
       </div>
-    </div>
-  </section>
+    </div></section>
 
-  <section class="panel" id="career" data-pose="career">
-    <div class="wrap">
-      <div class="copy right">
-        <h2>My career</h2>
-        <div class="timeline glass">
-          <div class="when">2024 — Present</div>
-          <div class="org">Moksha</div>
-          <div class="loc">Jaipur, India</div>
-          <div class="role">AI / GenAI Developer <span class="badge">Full-time</span></div>
-          <ul>
-            <li>Built an <b>LLM-based financial audit pipeline</b> (SEFA-Audit) with approval workflows, memory persistence and Excel output.</li>
-            <li>Developed an <b>OCR + FastAPI extraction system</b> for lorry receipts with multi-page table stitching and PDF generation.</li>
-            <li>Built a <b>full-stack document management platform</b> with FastAPI, React, TypeScript and MySQL.</li>
-            <li>Fine-tuned <b>Mistral 7B with QLoRA</b> and built RAG pipelines on ChromaDB, FAISS and BM25.</li>
-          </ul>
-        </div>
+    <section class="section" id="experience"><div class="wrap"><div class="section-head reveal"><div><p class="mono">03 / EXPERIENCE</p><h2>Building for real-world use.</h2></div><p>Selected responsibilities and engineering work from my current role.</p></div>
+      <article class="glass timeline reveal"><div class="timeline-top"><div><p class="mono">2024 — PRESENT</p><h3>Moksha</h3><p class="location">Jaipur, India · AI / GenAI Developer</p></div><span class="badge">Full-time</span></div><ul>
+        <li>Built an <strong>LLM-based financial audit pipeline (SEFA-Audit)</strong> with approval workflows, memory persistence, and Excel output generation.</li>
+        <li>Developed an <strong>OCR + FastAPI extraction system</strong> for lorry receipts, including multi-page table stitching and PDF generation.</li>
+        <li>Built a <strong>full-stack document management platform</strong> using FastAPI, React, TypeScript, and MySQL.</li>
+        <li>Fine-tuned <strong>Mistral 7B with QLoRA</strong> and implemented RAG pipelines using ChromaDB, FAISS, and BM25.</li>
+      </ul></article>
+    </div></section>
+
+    <section class="section" id="projects"><div class="wrap"><div class="section-head reveal"><div><p class="mono">04 / SELECTED WORK</p><h2>Projects with a purpose.</h2></div><p>Applied AI and software systems for audit, logistics, document management, and agent orchestration.</p></div>
+      <div class="project-grid">
+        <article class="glass project featured reveal"><div class="project-top"><span class="project-type">Financial audit · LLM automation</span><span class="project-num">01 / 04</span></div><h3>SEFA-Audit</h3><p>An LLM-powered audit automation pipeline using Google Gemini, a Flask REST API, and WebSockets to identify cash receipts. Includes human approval workflows, persistent LLM memory, batch approvals, and Excel output generation.</p><div class="chips"><span class="pill">Gemini</span><span class="pill">Flask</span><span class="pill">WebSockets</span><span class="pill">Human-in-the-loop</span><span class="pill">Excel</span></div></article>
+        <article class="glass project reveal"><div class="project-top"><span class="project-type">Document AI · OCR</span><span class="project-num">02 / 04</span></div><h3>Lorry Receipt Extractor</h3><p>PDF extraction for lorry receipt identifiers and structured fields, with multi-page table stitching and geometry-aware PDF generation.</p><div class="chips"><span class="pill">FastAPI</span><span class="pill">OCR</span><span class="pill">ReportLab</span><span class="pill">React</span></div></article>
+        <article class="glass project reveal"><div class="project-top"><span class="project-type">Full-stack · Document management</span><span class="project-num">03 / 04</span></div><h3>Enterprise Workflow Platform</h3><p>A document management platform inspired by enterprise DMS workflows, with a dedicated platform-owner console.</p><div class="chips"><span class="pill">FastAPI</span><span class="pill">React</span><span class="pill">TypeScript</span><span class="pill">MySQL</span></div><div class="chips"><a class="pill" href="http://206.189.132.238.nip.io:5177/" target="_blank" rel="noopener noreferrer">Live demo ↗</a><a class="pill" href="http://206.189.132.238.nip.io:5178/platform/login" target="_blank" rel="noopener noreferrer">Platform login ↗</a></div></article>
+        <article class="glass project featured reveal"><div class="project-top"><span class="project-type">Multi-agent · Local LLMs</span><span class="project-num">04 / 04</span></div><h3>Munder Difflin</h3><p>A multi-agent AI workspace built around a virtual office metaphor. An orchestrator delegates work to named worker agents, with Ollama powering local model execution.</p><div class="chips"><span class="pill">Multi-agent systems</span><span class="pill">Ollama</span><span class="pill">Orchestration</span><span class="pill">Local inference</span></div></article>
       </div>
-    </div>
-  </section>
+    </div></section>
 
-  <section class="projects" id="projects" data-pose="hide">
-    <div class="wrap">
-      <div class="sec-head"><h2>Projects</h2><p>Systems I've built and shipped for audit, logistics and document workflows.</p></div>
-      <div class="bento">
-        <article class="card glass feature">
-          <div class="ico">🧾</div>
-          <div class="body">
-            <span class="kind">Financial audit · LLM</span>
-            <h3>SEFA-Audit</h3>
-            <p>LLM-powered audit automation pipeline. A Flask REST API and WebSocket server drives Google Gemini to identify cash receipts, with user approval workflows, LLM memory persistence, a batch approval UI, and Excel output generation.</p>
-            <div class="chips"><span class="chip">Gemini</span><span class="chip">Flask</span><span class="chip">WebSocket</span><span class="chip">Excel</span></div>
-          </div>
-        </article>
-        <article class="card glass half">
-          <div class="ico">🚚</div>
-          <span class="kind">Document AI · OCR</span>
-          <h3>Lorry Receipt Extractor</h3>
-          <p>FastAPI/OCR pipeline that processes PDFs to extract LR numbers, plus a PDF template extraction and document generation system with a React frontend — multi-page table stitching and geometry-preserving ReportLab rendering.</p>
-          <div class="chips"><span class="chip">FastAPI</span><span class="chip">OCR</span><span class="chip">ReportLab</span><span class="chip">React</span></div>
-        </article>
-        <article class="card glass half">
-          <div class="ico">🗂️</div>
-          <span class="kind">Full-stack · DMS</span>
-          <h3>Enterprise Workflow Platform</h3>
-          <p>A document management system (Globodox DMS replica) built with FastAPI, React, TypeScript and MySQL, with a separate platform-owner console.</p>
-          <div class="chips"><span class="chip">FastAPI</span><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">MySQL</span></div>
-          <div class="links">
-            <a href="http://206.189.132.238.nip.io:5177/" target="_blank" rel="noopener noreferrer">Live demo</a>
-            <a class="ghost" href="http://206.189.132.238.nip.io:5178/platform/login" target="_blank" rel="noopener noreferrer">Platform login</a>
-          </div>
-        </article>
-        <article class="card glass feature">
-          <div class="ico">🏢</div>
-          <div class="body">
-            <span class="kind">Multi-agent · Orchestration</span>
-            <h3>Munder Difflin</h3>
-            <p>A multi-agent AI workspace built around a floor metaphor, with named agent "employees" — an orchestrator that delegates to workers — running on Ollama as the model backend.</p>
-            <div class="chips"><span class="chip">Multi-agent</span><span class="chip">Ollama</span><span class="chip">Orchestration</span></div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+    <section class="section" id="stack"><div class="wrap"><div class="section-head reveal"><div><p class="mono">05 / TOOLKIT</p><h2>My technical stack.</h2></div><p>A practical mix of model tooling, retrieval, backend engineering, and modern frontend development.</p></div>
+      <div class="glass skills-panel reveal"><p class="mono">AI / ML & RETRIEVAL</p><div class="skills"><span class="skill">Gemini</span><span class="skill">Mistral 7B</span><span class="skill">QLoRA</span><span class="skill">RAG</span><span class="skill">ChromaDB</span><span class="skill">FAISS</span><span class="skill">BM25</span><span class="skill">Ollama</span><span class="skill">OCR</span><span class="skill">OpenCV</span></div><p class="mono" style="margin-top:27px">ENGINEERING</p><div class="skills"><span class="skill">Python</span><span class="skill">FastAPI</span><span class="skill">Flask</span><span class="skill">React</span><span class="skill">TypeScript</span><span class="skill">MySQL</span><span class="skill">REST APIs</span><span class="skill">WebSockets</span><span class="skill">Git</span><span class="skill">ReportLab</span></div></div>
+    </div></section>
 
-  <section class="stack" id="stack" data-pose="tech">
-    <div class="wrap">
-      <h2>My tech stack</h2>
-      <p>Move your cursor through the spheres.</p>
-      <ul class="sr-only">
-        <li>Python</li><li>FastAPI</li><li>Flask</li><li>React</li><li>TypeScript</li><li>MySQL</li><li>Gemini</li><li>Ollama</li>
-        <li>RAG</li><li>QLoRA</li><li>Mistral 7B</li><li>ChromaDB</li><li>FAISS</li><li>BM25</li><li>OpenCV</li><li>YOLO</li><li>U-Net</li><li>OCR</li>
-      </ul>
-    </div>
-  </section>
+    <section class="section" id="contact"><div class="wrap"><div class="glass contact reveal"><p class="mono">06 / CONTACT</p><h2>Have a meaningful<br><span class="gradient">problem to solve?</span></h2><p>I'm interested in AI engineering roles and projects where reliable GenAI systems can make a real difference. Let's connect.</p><a class="email" href="mailto:er.sonisiddharth@gmail.com">er.sonisiddharth@gmail.com ↗</a><div class="actions"><a class="btn btn-primary" href="mailto:er.sonisiddharth@gmail.com">Start a conversation ↗</a><a class="btn btn-secondary" href="https://github.com/soni-siddharth" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="btn btn-secondary" href="https://www.linkedin.com/in/er-sonisiddharth/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a class="btn btn-secondary" href="Siddharth_Soni_Resume.pdf">Résumé ↓</a></div></div></div></section>
+  </main>
+  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Siddharth Soni</span><span class="footer-note">Designed with curiosity · Built for the web</span><a href="#home">Back to top ↑</a></div></footer>
+  <script>
+    (() => {
+      const menuBtn = document.querySelector('#menuBtn');
+      const navLinks = document.querySelector('#navLinks');
+      menuBtn.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', String(open));
+        menuBtn.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+        menuBtn.textContent = open ? '×' : '☰';
+      });
+      navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.setAttribute('aria-label', 'Open navigation');
+        menuBtn.textContent = '☰';
+      }));
+      document.querySelector('#year').textContent = new Date().getFullYear();
 
-  <section class="contact-wrap" id="contact" data-pose="contact">
-    <div class="wrap" style="width:100%">
-      <div class="contact glass">
-        <h2>Let's work together</h2>
-        <p>Have a role or project in mind? Send me a note.</p>
-        <a class="mail" href="mailto:er.sonisiddharth@gmail.com">er.sonisiddharth@gmail.com</a>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="mailto:er.sonisiddharth@gmail.com">Send email</a>
-          <a class="btn btn-glass" href="https://github.com/soni-siddharth" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a class="btn btn-glass" href="Siddharth_Soni_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
+      }), { threshold: .12 });
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-<footer>
-  <div class="wrap"><span>© <span id="year"></span> Siddharth Soni</span><span>Jaipur, India</span></div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-  var glow = document.getElementById('cursor-glow');
-  window.addEventListener('pointermove', function (e) { glow.style.opacity = 1; glow.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)'; }, { passive: true });
-  var toggle = document.getElementById('nav-toggle'), links = document.getElementById('nav-links');
-  toggle.addEventListener('click', function () {
-    var open = links.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  links.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
-  });
-</script>
-<script>
-/* ============ 3D scene: cartoon character + physics tech spheres ============ */
-(function () {
-  // ---- Character look (modelled on the reference photo; edit to taste) ----
-  var AVATAR = {
-    skin: 0xd6a47f,     // skin tone
-    hair: 0x14100e,     // hair + eyebrows
-    shirt: 0x4a5b5c,    // t-shirt
-    collar: 0x3b4a4b,
-    glasses: 0x9aa7b4,  // frame colour
-    eyes: 0x2a1a12,
-    earring: true,
-    shirtText: 'Life'   // text printed on the t-shirt ('' for plain)
-  };
-  var STACK = [
-    ['Python', 0x3b82f6], ['FastAPI', 0x10b981], ['Flask', 0x9ca3af], ['React', 0x22d3ee],
-    ['TypeScript', 0x2563eb], ['MySQL', 0xf59e0b], ['Gemini', 0xa855f7], ['Ollama', 0xf3f4f6],
-    ['RAG', 0xf43f5e], ['QLoRA', 0xec4899], ['Mistral 7B', 0xfb923c], ['ChromaDB', 0xeab308],
-    ['FAISS', 0x6366f1], ['BM25', 0x14b8a6], ['OpenCV', 0x22c55e], ['YOLO', 0xef4444],
-    ['U-Net', 0x8b5cf6], ['OCR', 0x06b6d4]
-  ];
-
-  var canvas = document.getElementById('scene');
-  if (!window.THREE) { canvas.style.display = 'none'; return; }
-  var renderer;
-  try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); }
-  catch (e) { canvas.style.display = 'none'; return; }
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  renderer.outputEncoding = THREE.sRGBEncoding;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.8;
-
-  var scene = new THREE.Scene();
-  var camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
-  camera.position.z = 9;
-  var HALF_TAN = Math.tan(THREE.MathUtils.degToRad(17.5));
-
-  scene.add(new THREE.AmbientLight(0xffffff, 0.28));
-  scene.add(new THREE.HemisphereLight(0xcfe6ff, 0x30241c, 0.35));
-  var key = new THREE.DirectionalLight(0xfff2e6, 0.75); key.position.set(-3, 4, 6); scene.add(key);
-  var rim = new THREE.PointLight(0x4cc9f0, 1.4, 20); rim.position.set(4, 2, -3); scene.add(rim);
-  var fill = new THREE.PointLight(0x7c6cff, 0.8, 20); fill.position.set(-5, -2, 3); scene.add(fill);
-
-  function lin(c) { return new THREE.Color(c).convertSRGBToLinear(); }
-  function mat(c, r) { return new THREE.MeshStandardMaterial({ color: lin(c), roughness: r == null ? 0.6 : r, metalness: 0 }); }
-  function mesh(g, m, x, y, z) { var o = new THREE.Mesh(g, m); o.position.set(x || 0, y || 0, z || 0); return o; }
-
-  /* ---------- Character ---------- */
-  var root = new THREE.Group(); scene.add(root);
-  var head = new THREE.Group(); head.position.y = 1.0; root.add(head);
-  var skin = mat(AVATAR.skin, 0.5), shirt = mat(AVATAR.shirt, 0.88), hairM = mat(AVATAR.hair, 0.75);
-
-  // body
-  var torso = mesh(new THREE.SphereGeometry(1, 48, 32), shirt, 0, -1.5, 0);
-  torso.scale.set(1.2, 1.3, 0.72); root.add(torso);
-  root.add(mesh(new THREE.CylinderGeometry(0.34, 0.38, 0.6, 24), skin, 0, -0.05, 0));
-  var collar = mesh(new THREE.TorusGeometry(0.42, 0.07, 12, 32), mat(AVATAR.collar, 0.85), 0, -0.3, 0.03);
-  collar.rotation.x = Math.PI / 2.15; root.add(collar);
-  [-1, 1].forEach(function (s) {
-    var arm = new THREE.Group(); arm.position.set(s * 1.2, -0.95, 0); arm.rotation.z = -s * 0.08; root.add(arm);
-    arm.add(mesh(new THREE.SphereGeometry(0.4, 24, 18), shirt));
-    arm.add(mesh(new THREE.CylinderGeometry(0.39, 0.44, 0.7, 24), shirt, 0, -0.35, 0));
-    arm.add(mesh(new THREE.CylinderGeometry(0.27, 0.24, 1.0, 20), skin, 0, -1.1, 0));
-    arm.add(mesh(new THREE.SphereGeometry(0.28, 20, 16), skin, 0, -1.65, 0));
-  });
-  if (AVATAR.shirtText) {
-    var tc = document.createElement('canvas'); tc.width = 256; tc.height = 256;
-    var tx = tc.getContext('2d');
-    tx.fillStyle = 'rgba(120,150,152,.45)'; tx.beginPath(); tx.ellipse(128, 128, 104, 96, -0.2, 0, 7); tx.fill();
-    tx.fillStyle = '#e8edf0'; tx.font = '600 24px "Instrument Sans", Arial, sans-serif'; tx.textAlign = 'center'; tx.fillText('In Your', 118, 100);
-    tx.fillStyle = '#e0b04a'; tx.font = 'italic 700 92px "Brush Script MT", "Segoe Script", "Snell Roundhand", Georgia, serif'; tx.fillText(AVATAR.shirtText, 128, 180);
-    var gtex = new THREE.CanvasTexture(tc); gtex.encoding = THREE.sRGBEncoding;
-    var gfx = new THREE.Mesh(new THREE.PlaneGeometry(1.0, 1.0), new THREE.MeshBasicMaterial({ map: gtex, transparent: true, opacity: 0.92 }));
-    gfx.position.set(0.15, -1.25, 0.715); root.add(gfx);
-  }
-
-  // head
-  var skull = mesh(new THREE.SphereGeometry(1, 64, 48), skin); skull.scale.set(0.93, 1.08, 0.98); head.add(skull);
-  var jaw = mesh(new THREE.SphereGeometry(0.82, 48, 32), skin, 0, -0.38, 0.08); jaw.scale.set(0.9, 0.85, 0.9); head.add(jaw);
-  [-1, 1].forEach(function (s) {
-    var ear = mesh(new THREE.SphereGeometry(0.17, 24, 16), skin, s * 0.93, -0.1, -0.02); ear.scale.set(0.55, 1, 0.9); head.add(ear);
-  });
-  if (AVATAR.earring) head.add(mesh(new THREE.SphereGeometry(0.04, 12, 10), new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.5, roughness: 0.2 }), -1.04, -0.25, 0.03));
-  var nose = mesh(new THREE.SphereGeometry(0.12, 24, 16), mat(AVATAR.skin, 0.45), 0, -0.18, 0.93); nose.scale.set(1, 1.1, 1); head.add(nose);
-
-  // eyes + brows
-  var eyes = [], pupils = [];
-  [-1, 1].forEach(function (s) {
-    var w = mesh(new THREE.SphereGeometry(0.15, 24, 16), mat(0xffffff, 0.3), s * 0.37, 0.0, 0.845);
-    w.scale.set(1, 1.05, 0.55); head.add(w); eyes.push(w);
-    var iris = mesh(new THREE.SphereGeometry(0.095, 22, 16), mat(AVATAR.eyes, 0.2), s * 0.37, 0.0, 0.93);
-    iris.userData.base = [s * 0.37, 0.0]; head.add(iris); pupils.push(iris);
-    iris.add(mesh(new THREE.SphereGeometry(0.05, 14, 10), new THREE.MeshBasicMaterial({ color: 0x050303 }), 0, 0, 0.05));
-    iris.add(mesh(new THREE.SphereGeometry(0.024, 10, 8), new THREE.MeshBasicMaterial({ color: 0xffffff }), 0.035, 0.04, 0.075));
-    var br = mesh(new THREE.BoxGeometry(0.3, 0.05, 0.05), hairM, s * 0.38, 0.27, 0.875);
-    br.rotation.z = -s * 0.1; head.add(br);
-  });
-
-  // smile with teeth
-  var mouth = mesh(new THREE.SphereGeometry(0.22, 32, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), mat(0x5a1a1d, 0.6), 0, -0.40, 0.88);
-  mouth.scale.set(1.3, 1.0, 0.25); head.add(mouth);
-  var teeth = mesh(new THREE.SphereGeometry(0.22, 32, 16, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), mat(0xffffff, 0.35), 0, -0.395, 0.885);
-  teeth.scale.set(1.22, 0.48, 0.27); head.add(teeth);
-
-  // glasses
-  function rr(w, h, r) {
-    var sh = new THREE.Shape(), x = -w / 2, y = -h / 2;
-    sh.moveTo(x + r, y); sh.lineTo(x + w - r, y); sh.quadraticCurveTo(x + w, y, x + w, y + r);
-    sh.lineTo(x + w, y + h - r); sh.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-    sh.lineTo(x + r, y + h); sh.quadraticCurveTo(x, y + h, x, y + h - r);
-    sh.lineTo(x, y + r); sh.quadraticCurveTo(x, y, x + r, y); return sh;
-  }
-  var outer = rr(0.56, 0.38, 0.09); outer.holes.push(rr(0.47, 0.29, 0.06));
-  var frameG = new THREE.ExtrudeGeometry(outer, { depth: 0.04, bevelEnabled: false });
-  var frameM = new THREE.MeshStandardMaterial({ color: lin(AVATAR.glasses), roughness: 0.3, metalness: 0.25, transparent: true, opacity: 0.92 });
-  var lensM = new THREE.MeshStandardMaterial({ color: lin(0xcfe9ff), transparent: true, opacity: 0.12, roughness: 0, side: THREE.DoubleSide, depthWrite: false });
-  [-1, 1].forEach(function (s) {
-    var g = new THREE.Group(); g.position.set(s * 0.4, 0.0, 0.985); g.rotation.y = s * 0.38;
-    g.add(new THREE.Mesh(frameG, frameM));
-    g.add(mesh(new THREE.ShapeGeometry(rr(0.47, 0.29, 0.06)), lensM, 0, 0, 0.02));
-    head.add(g);
-    var t1 = mesh(new THREE.BoxGeometry(0.03, 0.03, 0.52), frameM, s * 0.83, 0.03, 0.665); t1.rotation.y = -s * 0.61; head.add(t1);
-    var t2 = mesh(new THREE.BoxGeometry(0.03, 0.03, 0.55), frameM, s * 1.01, 0.03, 0.175); t2.rotation.y = -s * 0.11; head.add(t2);
-  });
-  head.add(mesh(new THREE.BoxGeometry(0.2, 0.04, 0.04), frameM, 0, 0.07, 1.0));
-
-  // hair: dome + back/sides + side-swept fringe
-  var dome = mesh(new THREE.SphereGeometry(1.07, 48, 32, 0, Math.PI * 2, 0, 1.32), hairM); dome.scale.set(0.93, 1.08, 0.98); head.add(dome);
-  var back = mesh(new THREE.SphereGeometry(1.07, 48, 32, Math.PI, Math.PI, 0, 2.0), hairM); back.scale.set(0.93, 1.08, 0.98); head.add(back);
-  [[0.15, 0.55, 0.78, 0.62, 0.2, 0.3, -0.15], [0.52, 0.42, 0.74, 0.4, 0.17, 0.26, -0.55],
-   [-0.35, 0.55, 0.78, 0.45, 0.18, 0.28, 0.2], [0.64, 0.33, 0.68, 0.28, 0.14, 0.2, -0.85]].forEach(function (l) {
-    var k = mesh(new THREE.SphereGeometry(1, 24, 16), hairM, l[0], l[1], l[2]); k.scale.set(l[3], l[4], l[5]); k.rotation.z = l[6]; head.add(k);
-  });
-
-  /* ---------- Tech spheres ---------- */
-  var techGroup = new THREE.Group(); scene.add(techGroup);
-  var balls = [];
-  function labelSprite(text) {
-    var c = document.createElement('canvas'); c.width = 256; c.height = 96;
-    var x = c.getContext('2d'); x.font = '600 38px "Instrument Sans", "Segoe UI", sans-serif';
-    x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillStyle = '#fff';
-    x.shadowColor = 'rgba(0,0,0,.6)'; x.shadowBlur = 8; x.fillText(text, 128, 48);
-    var t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding;
-    var s = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, transparent: true, depthTest: false }));
-    s.scale.set(1.6, 0.6, 1); s.renderOrder = 5; return s;
-  }
-  STACK.forEach(function (it, i) {
-    var r = 0.46 + ((i * 37) % 10) / 100 * 1.4;
-    var m = new THREE.MeshStandardMaterial({ color: lin(it[1]), roughness: 0.28, metalness: 0.08, emissive: lin(it[1]), emissiveIntensity: 0.1 });
-    var o = new THREE.Mesh(new THREE.SphereGeometry(r, 40, 28), m);
-    var lbl = labelSprite(it[0]); lbl.position.z = r + 0.05; o.add(lbl);
-    o.position.set((Math.random() - 0.5) * 6, (Math.random() - 0.5) * 3.5, 0);
-    techGroup.add(o);
-    balls.push({ o: o, r: r, base: r, vx: 0, vy: 0 });
-  });
-
-  /* ---------- Pointer ---------- */
-  var m = { x: 0, y: 0, active: false, last: 0 };
-  function setPtr(cx, cy) { m.x = (cx / window.innerWidth) * 2 - 1; m.y = -(cy / window.innerHeight) * 2 + 1; m.active = true; m.last = performance.now(); }
-  window.addEventListener('pointermove', function (e) { setPtr(e.clientX, e.clientY); }, { passive: true });
-  window.addEventListener('touchmove', function (e) { if (e.touches[0]) setPtr(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
-
-  /* ---------- Sizing & poses ---------- */
-  var aspect = 1, mobile = false;
-  function resize() {
-    var w = window.innerWidth, h = window.innerHeight;
-    renderer.setSize(w, h, false); aspect = w / h; mobile = aspect < 0.9;
-    camera.aspect = aspect; camera.updateProjectionMatrix();
-    var f = Math.min(1, (HALF_TAN * 9 * aspect) / 4.2);
-    balls.forEach(function (b) { b.r = b.base * f; b.o.scale.setScalar(f); });
-  }
-  window.addEventListener('resize', resize); resize();
-
-  var POSES = {
-    hero:    { x: 2.5,  y: -0.7, s: 1.1,  ry: -0.25 },
-    about:   { x: -2.6, y: -0.6, s: 1.0,  ry: 0.25 },
-    what:    { x: 2.6,  y: -0.6, s: 1.0,  ry: -0.25 },
-    career:  { x: -2.6, y: -0.6, s: 0.95, ry: 0.25 },
-    contact: { x: 3.4,  y: -1.5, s: 0.7,  ry: -0.3 },
-    hide:    { x: 0, y: -0.7, s: 0, ry: 0 },
-    tech:    { x: 0, y: -0.7, s: 0, ry: 0 }
-  };
-  var MPOSES = { hero: { x: 0, y: 0.35, s: 0.55, ry: 0 } };
-  var cur = { x: 2.5, y: -0.7, s: 0, ry: 0 };
-  var sections = Array.prototype.slice.call(document.querySelectorAll('[data-pose]'));
-  var active = 'hero';
-  function detect() {
-    var mid = window.innerHeight * 0.5;
-    for (var i = 0; i < sections.length; i++) {
-      var r = sections[i].getBoundingClientRect();
-      if (r.top <= mid && r.bottom > mid) { active = sections[i].getAttribute('data-pose'); return; }
-    }
-  }
-
-  var techS = 0, clock = new THREE.Clock(), blinkAt = 2, blinkUntil = 0, vec = new THREE.Vector3();
-  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
-
-  function simulate(dt) {
-    var halfH = HALF_TAN * 9, halfW = halfH * aspect;
-    var bx = halfW * 0.88, by = halfH * 0.6;
-    var mx = m.x * halfW, my = m.y * halfH, t = clock.elapsedTime;
-    var i, j, a, b;
-    for (i = 0; i < balls.length; i++) {
-      a = balls[i]; var p = a.o.position;
-      a.vx += (-p.x * 0.5 + Math.sin(t * 0.7 + i * 1.7) * 0.25) * dt;
-      a.vy += (-p.y * 0.5 + Math.cos(t * 0.6 + i * 2.3) * 0.25) * dt;
-      var dx = p.x - mx, dy = p.y - my, d = Math.sqrt(dx * dx + dy * dy) || 0.001;
-      if (m.active && d < 2.0) { var f = (2.0 - d) * 9 * dt; a.vx += dx / d * f; a.vy += dy / d * f; }
-      a.vx *= 0.985; a.vy *= 0.985;
-      p.x += a.vx * dt * 6; p.y += a.vy * dt * 6;
-      if (p.x > bx - a.r) { p.x = bx - a.r; a.vx *= -0.6; } if (p.x < -bx + a.r) { p.x = -bx + a.r; a.vx *= -0.6; }
-      if (p.y > by - a.r) { p.y = by - a.r; a.vy *= -0.6; } if (p.y < -by + a.r) { p.y = -by + a.r; a.vy *= -0.6; }
-    }
-    for (i = 0; i < balls.length; i++) for (j = i + 1; j < balls.length; j++) {
-      a = balls[i]; b = balls[j];
-      var ex = b.o.position.x - a.o.position.x, ey = b.o.position.y - a.o.position.y;
-      var dist = Math.sqrt(ex * ex + ey * ey) || 0.001, min = a.r + b.r;
-      if (dist < min) {
-        var nx = ex / dist, ny = ey / dist, push = (min - dist) / 2;
-        a.o.position.x -= nx * push; a.o.position.y -= ny * push;
-        b.o.position.x += nx * push; b.o.position.y += ny * push;
-        var rel = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
-        if (rel < 0) { var imp = rel * 0.9; a.vx += nx * imp; a.vy += ny * imp; b.vx -= nx * imp; b.vy -= ny * imp; }
-      }
-    }
-  }
-
-  function frame() {
-    requestAnimationFrame(frame);
-    if (document.hidden) return;
-    var dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime, k = 1 - Math.exp(-dt * 5);
-    detect();
-    var pose = (mobile ? MPOSES[active] : POSES[active]) || POSES.hide;
-    cur.x += (pose.x - cur.x) * k; cur.y += (pose.y - cur.y) * k;
-    cur.s += (pose.s - cur.s) * k; cur.ry += (pose.ry - cur.ry) * k;
-
-    root.visible = cur.s > 0.02;
-    if (root.visible) {
-      root.position.set(cur.x, cur.y + (reduce ? 0 : Math.sin(t * 1.6) * 0.03), 0);
-      root.scale.setScalar(Math.max(cur.s, 0.001));
-      root.rotation.y = cur.ry;
-      var px = vec.set(root.position.x, root.position.y + cur.s, 0).project(camera);
-      var px_ = px.x, py_ = px.y, tx = m.x, ty = m.y;
-      if (!m.active || performance.now() - m.last > 4000) { tx = Math.sin(t * 0.6) * 0.5; ty = 0.1 + Math.sin(t * 0.4) * 0.15; }
-      if (reduce) { tx = px_; ty = py_; }
-      var hy = clamp((tx - px_) * 0.9, -0.65, 0.65) - cur.ry * 0.5;
-      var hx = clamp(-(ty - py_) * 0.5, -0.35, 0.35);
-      head.rotation.y += (hy - head.rotation.y) * k * 1.4;
-      head.rotation.x += (hx - head.rotation.x) * k * 1.4;
-      var ox = clamp((tx - px_) * 0.6, -1, 1) * 0.045, oy = clamp((ty - py_) * 0.6, -1, 1) * 0.035;
-      pupils.forEach(function (p) { p.position.x = p.userData.base[0] + ox; p.position.y = p.userData.base[1] + oy; });
-      if (!reduce) {
-        if (blinkUntil === 0 && t > blinkAt) blinkUntil = t + 0.13;
-        var blinking = blinkUntil > 0 && t < blinkUntil;
-        if (blinkUntil > 0 && t >= blinkUntil) { blinkUntil = 0; blinkAt = t + 2.5 + Math.random() * 3; }
-        eyes.forEach(function (e) { e.scale.y = blinking ? 0.12 : 1; });
-        torso.scale.y = 1 + Math.sin(t * 1.6) * 0.012;
-      }
-    }
-
-    var wantTech = active === 'tech' ? 1 : 0;
-    techS += (wantTech - techS) * k;
-    techGroup.visible = techS > 0.02;
-    if (techGroup.visible) {
-      techGroup.scale.setScalar(0.4 + 0.6 * techS); techGroup.position.y = -0.7;
-      if (!reduce) simulate(dt);
-      else balls.forEach(function (b) { b.o.position.z = 0; });
-    }
-    renderer.render(scene, camera);
-  }
-  frame();
-})();
-</script>
+      // Lightweight, responsive particle network; no WebGL dependency required.
+      const canvas = document.querySelector('#particles');
+      const ctx = canvas.getContext('2d');
+      let width = 0, height = 0, points = [], raf = 0;
+      const pointer = { x: -1000, y: -1000 };
+      const resize = () => {
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        width = window.innerWidth; height = window.innerHeight;
+        canvas.width = Math.floor(width * dpr); canvas.height = Math.floor(height * dpr);
+        canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const count = Math.min(85, Math.max(30, Math.floor(width * height / 17000)));
+        points = Array.from({ length: count }, () => ({ x: Math.random()*width, y: Math.random()*height, vx: (Math.random()-.5)*.22, vy: (Math.random()-.5)*.22, r: Math.random()*1.4+.4 }));
+      };
+      const draw = () => {
+        ctx.clearRect(0, 0, width, height);
+        for (let i=0; i<points.length; i++) {
+          const p = points[i];
+          if (!reduceMotion) { p.x += p.vx; p.y += p.vy; if(p.x<0||p.x>width)p.vx*=-1; if(p.y<0||p.y>height)p.vy*=-1; }
+          const dx=p.x-pointer.x, dy=p.y-pointer.y, dist=Math.hypot(dx,dy);
+          if (dist<130 && !reduceMotion) { p.x += dx/(dist||1)*.12; p.y += dy/(dist||1)*.12; }
+          ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='rgba(142,220,255,.62)'; ctx.fill();
+          for(let j=i+1;j<points.length;j++){const q=points[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<105){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(114,178,255,${(1-d/105)*.12})`;ctx.lineWidth=.7;ctx.stroke();}}
+        }
+        if (!reduceMotion) raf=requestAnimationFrame(draw);
+      };
+      window.addEventListener('resize', () => { cancelAnimationFrame(raf); resize(); draw(); }, { passive:true });
+      window.addEventListener('pointermove', e => { pointer.x=e.clientX; pointer.y=e.clientY; }, { passive:true });
+      window.addEventListener('pointerleave', () => { pointer.x=-1000; pointer.y=-1000; }, { passive:true });
+      resize(); draw();
+    })();
+  </script>
 </body>
 </html>
