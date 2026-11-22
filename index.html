@@ -1,181 +1,135 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8">
-  <script>try{var t=localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme:light)").matches?"light":"dark";document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme="dark"}</script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#070912">
-  <meta name="description" content="Siddharth Soni — AI Engineer building production agentic workflows, Model Context Protocol (MCP) systems, document intelligence, and multi-tenant SaaS platforms.">
-  <meta property="og:title" content="Siddharth Soni — AI Engineer">
-  <meta property="og:description" content="Production agentic systems, MCP pipelines, high-concurrency document AI, and full-stack AI platforms.">
-  <meta property="og:image" content="assets/siddharth-soni.jpg">
-  <title>Siddharth Soni — AI Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root,[data-theme=dark]{color-scheme:dark;--bg:#080b16;--b1:rgba(94,75,191,.30);--b2:rgba(29,157,187,.22);--glass:rgba(255,255,255,.06);--glass2:rgba(14,18,34,.78);--line:rgba(255,255,255,.12);--hi:rgba(255,255,255,.18);--text:#f1f4ff;--muted:#a6afc8;--accent:#7be8ff;--accent2:#a795ff;--green:#8df3c4;--btn:#7be8ff;--on-btn:#06111a;--shadow:0 24px 60px rgba(0,0,0,.35);--grid:rgba(255,255,255,.03);--pc:123,232,255;--lc:167,149,255;--scrim:rgba(6,8,18,.7);--max:1180px}
-    [data-theme=light]{color-scheme:light;--bg:#eef2fb;--b1:rgba(129,140,248,.38);--b2:rgba(56,189,248,.32);--glass:rgba(255,255,255,.55);--glass2:rgba(255,255,255,.88);--line:rgba(30,41,90,.13);--hi:rgba(255,255,255,.95);--text:#0f172a;--muted:#4b5675;--accent:#0a7396;--accent2:#6040e8;--green:#0a8a58;--btn:linear-gradient(120deg,#0a7396,#6040e8);--on-btn:#fff;--shadow:0 20px 50px rgba(40,55,120,.14);--grid:rgba(15,23,42,.05);--pc:10,115,150;--lc:96,64,232;--scrim:rgba(220,228,248,.65)}
-    *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:90px}
-    body{font-family:Manrope,system-ui,sans-serif;color:var(--text);background:radial-gradient(ellipse 60% 45% at 85% 8%,var(--b1),transparent 70%),radial-gradient(ellipse 55% 45% at 10% 60%,var(--b2),transparent 70%),radial-gradient(ellipse 50% 40% at 70% 100%,var(--b1),transparent 70%),var(--bg);background-attachment:fixed;line-height:1.65;overflow-x:hidden;transition:background-color .3s,color .3s}
-    body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
-    a{color:inherit;text-decoration:none}button,a{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-    .wrap{width:min(var(--max),calc(100% - 44px));margin-inline:auto}.mono,.nav a,.pill,.project-type,.footer-note,.filter-btn{font-family:"DM Mono",monospace}
-    .mono{font-size:.76rem;letter-spacing:.06em;color:var(--accent);text-transform:uppercase;font-weight:500}
-    .glass,.nav,.quick-stats,.availability,.portrait-caption,.floating-tag,.modal-card{backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%)}
-    .glass{border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,var(--glass),transparent 160%);box-shadow:var(--shadow),inset 0 1px 0 var(--hi)}
-    .nav-shell{position:fixed;top:14px;left:0;right:0;z-index:20}.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px 12px 10px 22px;border:1px solid var(--line);border-radius:999px;background:var(--glass2);box-shadow:var(--shadow),inset 0 1px 0 var(--hi)}
-    .brand{font-weight:800;letter-spacing:-.05em}.brand span{color:var(--accent)}.nav-links{display:flex;align-items:center;gap:4px;margin-left:auto}.nav-links a{font-size:.76rem;color:var(--muted);padding:9px 13px;border-radius:99px;transition:.2s}.nav-links a:hover{color:var(--text);background:var(--glass)}.nav-links .nav-cta{color:var(--on-btn);background:var(--btn);font-weight:700}.nav-links .nav-cta:hover{color:var(--on-btn);background:var(--btn);filter:brightness(1.08)}
-    .nav-tools{display:flex;gap:8px}.menu-btn,.theme-btn{display:grid;place-items:center;border:1px solid var(--line);background:var(--glass);color:var(--text);border-radius:50%;width:38px;height:38px;font-size:1.05rem;cursor:pointer;transition:.2s}.theme-btn:hover{border-color:var(--accent);color:var(--accent)}.menu-btn{display:none}
-    #particles{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;opacity:.7}
-    section{position:relative}.hero{min-height:100svh;display:flex;align-items:center;padding:142px 0 78px}.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:7vw}.availability{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:99px;background:var(--glass);padding:7px 13px;color:var(--muted);font-size:.75rem;margin-bottom:25px;box-shadow:inset 0 1px 0 var(--hi)}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
-    h1,h2,h3{letter-spacing:-.05em;line-height:1.1}h1{font-size:clamp(3rem,6.2vw,5.7rem);font-weight:800;max-width:740px}h1 .gradient{background:linear-gradient(100deg,var(--accent),var(--accent2) 80%);background-clip:text;-webkit-background-clip:text;color:transparent}.hero-subtitle{font-size:clamp(1rem,1.5vw,1.2rem);color:var(--text);opacity:.85;margin:24px 0 15px}.hero-copy{max-width:660px;color:var(--muted);font-size:1rem}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:29px 0 32px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 19px;border-radius:14px;border:1px solid var(--line);font-weight:700;font-size:.87rem;transition:transform .2s,border-color .2s,filter .2s;cursor:pointer}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--btn);color:var(--on-btn);border-color:transparent;box-shadow:0 10px 30px rgba(var(--pc),.22),inset 0 1px 0 rgba(255,255,255,.35)}.btn-primary:hover{filter:brightness(1.08)}.btn-secondary{background:var(--glass);color:var(--text);backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 var(--hi)}.btn-secondary:hover{border-color:var(--accent)}
-    .quick-stats{display:flex;max-width:580px;border:1px solid var(--line);background:var(--glass);border-radius:18px;padding:16px 4px;box-shadow:var(--shadow),inset 0 1px 0 var(--hi)}.stat{flex:1;padding:0 16px}.stat+.stat{border-left:1px solid var(--line)}.stat strong{display:block;font-size:1.35rem;letter-spacing:-.05em}.stat span{font-size:.7rem;color:var(--muted)}
-    .portrait-stage{position:relative;display:grid;place-items:center;min-height:600px;isolation:isolate;perspective:1100px}.orbit{position:absolute;width:min(35vw,440px);aspect-ratio:1;border:1px solid rgba(var(--pc),.3);border-radius:50%;box-shadow:0 0 80px rgba(var(--pc),.1),inset 0 0 60px rgba(var(--pc),.05);animation:orbit 30s linear infinite;z-index:-1}.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid rgba(var(--lc),.26);border-radius:50%;inset:10% -6%;transform:rotate(55deg)}.orbit:after{inset:20% -10%;transform:rotate(-48deg)}
-    .portrait-frame{width:min(100%,470px);position:relative;border-radius:28px;transform-style:preserve-3d;will-change:transform;transition:transform .18s ease-out;animation:characterFloat 5.5s ease-in-out infinite}.portrait-frame img{display:block;width:100%;height:auto;max-height:690px;object-fit:contain;object-position:center bottom;border-radius:24px;filter:drop-shadow(0 28px 40px rgba(0,0,0,.3));mix-blend-mode:screen;user-select:none;-webkit-user-drag:none}
-    [data-theme=light] .portrait-frame{background:radial-gradient(ellipse at 50% 30%,#1d2550,#0b1024);box-shadow:0 30px 70px rgba(40,55,120,.28),inset 0 1px 0 rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.6);padding:6px}
-    .portrait-caption{position:absolute;bottom:6%;left:-5%;right:10%;padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:var(--glass2);box-shadow:var(--shadow),inset 0 1px 0 var(--hi);transform:translateZ(45px)}.portrait-caption strong{display:block;font-size:.85rem}.portrait-caption span{font-size:.72rem;color:var(--muted)}.floating-tag{position:absolute;top:12%;right:-2%;padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:var(--glass2);font:.72rem "DM Mono",monospace;color:var(--text);box-shadow:var(--shadow);transform:translateZ(55px)}@keyframes characterFloat{0%,100%{translate:0 0}50%{translate:0 -11px}}
-    .section{padding:105px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:34px}.section-head h2{font-size:clamp(2.1rem,4vw,3.4rem);margin-top:12px}.section-head p{max-width:440px;color:var(--muted);font-size:.94rem}.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.about-copy{padding:32px}.about-copy p{color:var(--muted);margin-top:15px}.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fact{padding:20px}.fact .mono{font-size:.66rem}.fact strong{display:block;font-size:1rem;margin-top:9px}.fact small{display:block;color:var(--muted);font-size:.78rem;margin-top:3px}
-    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.service{padding:26px;min-height:225px;transition:transform .25s,border-color .25s,box-shadow .25s}.service:hover,.project:hover{transform:translateY(-4px);border-color:rgba(var(--pc),.5);box-shadow:0 28px 60px rgba(var(--pc),.14),inset 0 1px 0 var(--hi)}.service-icon{width:46px;height:46px;display:grid;place-items:center;border:1px solid var(--line);border-radius:14px;color:var(--accent);font-size:1.25rem;background:rgba(var(--pc),.1);margin-bottom:22px;box-shadow:inset 0 1px 0 var(--hi)}.service h3{font-size:1.15rem;letter-spacing:-.03em;margin-bottom:10px}.service p{font-size:.86rem;color:var(--muted)}
-    .timeline{padding:32px}.timeline-top{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.timeline h3{font-size:1.4rem;margin:7px 0}.timeline .location{font-size:.8rem;color:var(--muted)}.badge{font-size:.7rem;padding:5px 11px;border:1px solid rgba(var(--pc),.35);border-radius:99px;color:var(--green);background:var(--glass);height:max-content}.timeline ul{margin-top:22px;list-style:none;display:grid;gap:12px}.timeline li{position:relative;padding-left:20px;color:var(--muted);font-size:.9rem}.timeline li:before{content:"";position:absolute;left:0;top:.7em;width:6px;height:6px;background:var(--accent);border-radius:50%}.timeline li strong{color:var(--text)}
-    .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.filter-btn{font-size:.72rem;letter-spacing:.03em;padding:9px 15px;border-radius:99px;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(14px);color:var(--muted);cursor:pointer;transition:.2s;box-shadow:inset 0 1px 0 var(--hi)}.filter-btn:hover{color:var(--text);border-color:rgba(var(--pc),.5)}.filter-btn.active{background:rgba(var(--pc),.16);color:var(--accent);border-color:rgba(var(--pc),.55)}
-    .project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.project{padding:28px;min-height:285px;display:flex;flex-direction:column;gap:12px;transition:transform .25s,border-color .25s,box-shadow .25s;cursor:pointer;position:relative}.project.featured{grid-column:span 2;min-height:250px}.project.hidden{display:none}
-    .project-top{display:flex;justify-content:space-between;gap:14px;align-items:center}.project-type{font-size:.7rem;color:var(--accent);letter-spacing:.04em}.project-num{font:.78rem "DM Mono",monospace;color:var(--muted);opacity:.7}
-    .project h3{font-size:1.4rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.live-badge{font:500 .66rem "DM Mono",monospace;color:var(--green);border:1px solid rgba(var(--pc),.3);background:rgba(var(--pc),.08);padding:3px 9px;border-radius:99px;letter-spacing:.05em;text-transform:uppercase}
-    .project p{color:var(--muted);font-size:.9rem;max-width:860px}.project-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}.chips{display:flex;gap:7px;flex-wrap:wrap}.pill{font-size:.68rem;color:var(--text);opacity:.85;border:1px solid var(--line);border-radius:99px;padding:5px 10px;background:var(--glass)}a.pill:hover{border-color:var(--accent);color:var(--accent)}.inspect-link{font:500 .72rem "DM Mono",monospace;color:var(--accent);white-space:nowrap}
-    .modal-backdrop{position:fixed;inset:0;z-index:50;background:var(--scrim);backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .22s ease}.modal-backdrop.open{display:flex;opacity:1}
-    .modal-card{width:min(760px,100%);max-height:88vh;overflow-y:auto;padding:32px;border:1px solid var(--line);border-radius:26px;background:var(--glass2);box-shadow:0 30px 90px rgba(0,0,0,.4),inset 0 1px 0 var(--hi);position:relative}
-    .modal-close{position:sticky;top:0;float:right;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--glass);color:var(--text);font-size:1.05rem;cursor:pointer;display:grid;place-items:center}.modal-close:hover{border-color:var(--accent);color:var(--accent)}
-    .modal-card h3{font-size:1.85rem;margin:8px 0 14px}.modal-grid{display:grid;gap:14px;margin-top:18px}.modal-block{padding:16px 18px;border:1px solid var(--line);border-radius:16px;background:var(--glass)}.modal-block h4{font:500 .72rem "DM Mono",monospace;color:var(--accent);letter-spacing:.04em;margin-bottom:8px}.modal-block p,.modal-block li{color:var(--muted);font-size:.9rem}.modal-block ul{list-style:none;display:grid;gap:8px}.modal-block li{position:relative;padding-left:16px}.modal-block li:before{content:"→";position:absolute;left:0;color:var(--accent);font-family:"DM Mono",monospace;font-size:.8rem}
-    .pipeline-flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px}.pipe-step{font:.72rem "DM Mono",monospace;padding:6px 11px;border-radius:9px;border:1px solid rgba(var(--pc),.3);background:rgba(var(--pc),.09);color:var(--text)}.pipe-arrow{color:var(--muted);font-size:.8rem}.modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-    .skills-panel{padding:32px}.skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.skill{padding:10px 15px;border:1px solid var(--line);border-radius:12px;color:var(--text);background:var(--glass);font-size:.82rem;transition:background .2s,border-color .2s;box-shadow:inset 0 1px 0 var(--hi)}.skill:hover{background:rgba(var(--pc),.12);border-color:rgba(var(--pc),.45)}
-    .contact{padding:clamp(28px,6vw,64px);text-align:center;position:relative;overflow:hidden}.contact:before{content:"";position:absolute;width:420px;height:260px;left:50%;top:-220px;transform:translateX(-50%);background:var(--accent);filter:blur(130px);opacity:.2;pointer-events:none}.contact h2{font-size:clamp(2.3rem,5vw,4.2rem);margin:12px 0 15px}.contact p{color:var(--muted);max-width:560px;margin:0 auto}.contact .actions{justify-content:center;margin-bottom:0}.email{display:inline-block;color:var(--accent);margin-top:19px;font-size:clamp(1rem,2vw,1.25rem);overflow-wrap:anywhere}
-    .footer{padding:25px 0 35px;color:var(--muted);font-size:.75rem}.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px}.footer a:hover{color:var(--accent)}
-    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}@keyframes orbit{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}}
-    @media(max-width:850px){.hero-grid{grid-template-columns:1fr;gap:28px}.hero{padding-top:130px}.portrait-stage{min-height:480px;grid-row:1}.portrait-frame{width:min(86%,390px)}.orbit{width:min(70vw,390px)}.hero-content{max-width:720px}.about-grid{grid-template-columns:1fr}.service-grid{grid-template-columns:1fr 1fr}.section-head{align-items:start;flex-direction:column}.floating-tag{right:7%}.nav-links{position:absolute;top:calc(100% + 10px);left:0;right:0;display:none;align-items:stretch;flex-direction:column;padding:12px;border:1px solid var(--line);border-radius:20px;background:var(--glass2);backdrop-filter:blur(22px)}.nav-links.open{display:flex}.nav-links a{padding:12px 14px}.nav-links .nav-cta{text-align:center}.menu-btn{display:grid}.nav{justify-content:space-between}.nav-links{margin-left:0}}
-    @media(max-width:560px){.wrap{width:calc(100% - 30px)}.nav-shell{top:9px}.nav{border-radius:20px;padding-left:15px}.hero{padding-top:105px}.portrait-stage{min-height:400px}.portrait-frame{width:min(92%,340px);border-radius:22px}.portrait-frame img{border-radius:18px;max-height:480px}.portrait-caption{left:-5px;bottom:5%;padding:10px 12px}.floating-tag{font-size:.62rem;right:1%;top:11%}h1{font-size:clamp(2.65rem,13vw,4rem)}.hero-subtitle{margin-top:17px}.actions .btn{flex:1}.quick-stats{padding:12px 0}.stat{padding:0 10px}.stat strong{font-size:1.15rem}.stat span{font-size:.62rem}.section{padding:75px 0}.service-grid,.project-grid{grid-template-columns:1fr}.project.featured{grid-column:auto}.service{min-height:0}.facts{gap:9px}.fact{padding:15px}.about-copy,.timeline,.project,.skills-panel,.modal-card{padding:22px}.footer-inner{flex-direction:column}}
-  </style>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme:light)").matches?"light":"dark";document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0b10">
+<meta name="description" content="Siddharth Soni — AI Engineer building production agentic workflows, MCP systems, document intelligence, and multi-tenant SaaS platforms.">
+<meta property="og:title" content="Siddharth Soni — AI Engineer">
+<meta property="og:description" content="Production agentic systems, MCP pipelines, high-concurrency document AI, and full-stack AI platforms.">
+<meta property="og:image" content="assets/siddharth-soni.jpg">
+<title>Siddharth Soni — AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme=dark]{color-scheme:dark;--bg:#0a0b10;--ink:#eef0f7;--muted:#99a0b6;--acc:#7b8dff;--acc2:#ff8f80;--glass:rgba(255,255,255,.055);--glass2:rgba(16,18,28,.8);--line:rgba(255,255,255,.11);--hi:rgba(255,255,255,.14);--shadow:0 24px 60px rgba(0,0,0,.4);--b1:rgba(98,116,255,.28);--b2:rgba(255,120,100,.16);--scrim:rgba(5,6,12,.7)}
+[data-theme=light]{color-scheme:light;--bg:#eceef5;--ink:#12142a;--muted:#555b76;--acc:#2f49e0;--acc2:#e0513f;--glass:rgba(255,255,255,.62);--glass2:rgba(255,255,255,.9);--line:rgba(20,24,60,.11);--hi:rgba(255,255,255,.95);--shadow:0 20px 50px rgba(40,50,110,.13);--b1:rgba(100,120,255,.34);--b2:rgba(255,140,110,.28);--scrim:rgba(225,229,245,.7)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:84px;overflow-x:clip}
+body{font-family:Figtree,system-ui,sans-serif;color:var(--ink);background:radial-gradient(ellipse 55% 40% at 90% 0%,var(--b1),transparent 70%),radial-gradient(ellipse 50% 40% at 0% 45%,var(--b2),transparent 70%),radial-gradient(ellipse 50% 35% at 80% 100%,var(--b1),transparent 70%),var(--bg);background-attachment:fixed;line-height:1.6;overflow-x:clip;transition:background-color .3s}
+a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible,.project:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+h1,h2,h3{font-family:"Bricolage Grotesque",Figtree,sans-serif;letter-spacing:-.035em;line-height:1.05}
+.wrap{width:min(1160px,calc(100% - 40px));margin-inline:auto}
+.glass{background:linear-gradient(150deg,var(--glass),transparent 170%);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow),inset 0 1px 0 var(--hi);backdrop-filter:blur(24px) saturate(170%);-webkit-backdrop-filter:blur(24px) saturate(170%)}
+.bar{position:sticky;top:0;z-index:30;background:var(--glass2);border-bottom:1px solid var(--line);backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%)}
+.bar .wrap{display:flex;align-items:center;gap:18px;height:64px}.brand{font:700 1.15rem "Bricolage Grotesque",sans-serif;letter-spacing:-.03em;margin-right:auto}
+.links{display:flex;gap:2px}.links a{font-size:.88rem;color:var(--muted);padding:8px 13px;border-radius:99px;transition:.2s}.links a:hover{color:var(--ink);background:var(--glass)}
+.tools{display:flex;gap:8px}.ib{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--glass);color:var(--ink);font-size:1rem;cursor:pointer;display:grid;place-items:center}.ib:hover{border-color:var(--acc)}#menuBtn{display:none}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:99px;font-weight:600;font-size:.92rem;border:1px solid var(--line);cursor:pointer;transition:transform .2s,box-shadow .2s}.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--ink);color:var(--bg);border-color:transparent}.btn-secondary{background:var(--glass);color:var(--ink);backdrop-filter:blur(14px)}
+.hero{padding:70px 0 40px}.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center}
+.status{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;border-radius:99px;border:1px solid var(--line);background:var(--glass);font-size:.82rem;color:var(--muted);margin-bottom:26px}.status i{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 10px #34d399}
+h1{font-size:clamp(2.8rem,6vw,5.3rem);font-weight:700;max-width:12ch}h1 span{color:var(--muted)}
+.lead{font-size:1.12rem;color:var(--muted);max-width:56ch;margin:24px 0 30px}.lead b{color:var(--ink);font-weight:600}
+.actions{display:flex;gap:10px;flex-wrap:wrap}.facts{display:flex;gap:34px;flex-wrap:wrap;margin-top:42px}.facts div strong{display:block;font:700 1.7rem "Bricolage Grotesque",sans-serif;letter-spacing:-.03em}.facts div span{font-size:.82rem;color:var(--muted)}
+.portrait-stage{perspective:1100px;display:grid;place-items:center}.portrait-frame{position:relative;width:min(100%,400px);border-radius:200px 200px 28px 28px;overflow:hidden;border:1px solid var(--hi);background:radial-gradient(ellipse 80% 50% at 50% 25%,rgba(123,141,255,.5),transparent 70%),radial-gradient(ellipse 70% 40% at 50% 100%,rgba(255,143,128,.3),transparent 70%),#0e1128;box-shadow:var(--shadow),inset 0 1px 0 var(--hi);transition:transform .18s ease-out;transform-style:preserve-3d}
+.portrait-frame img{display:block;width:100%;height:auto;max-height:620px;object-fit:contain;object-position:center bottom;mix-blend-mode:screen;user-select:none}
+.cap{position:absolute;left:14px;right:14px;bottom:14px;padding:12px 16px;border-radius:18px;background:rgba(10,12,28,.6);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(16px);color:#f1f3ff}.cap strong{display:block;font-size:.95rem}.cap span{font-size:.8rem;color:#b4bddb}
+.section{padding:84px 0}.sh{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:30px}.sh h2{font-size:clamp(2rem,4vw,3.1rem);max-width:16ch}.sh p{color:var(--muted);max-width:42ch}
+.about{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.about .glass{padding:32px}.about p{color:var(--muted)}.about p+p{margin-top:14px}.about dl{display:grid;gap:18px}.about dt{font-size:.8rem;color:var(--muted)}.about dd{font-weight:600}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.tile{padding:26px;transition:transform .25s,border-color .25s}.tile:hover,.project:hover{transform:translateY(-3px);border-color:var(--acc)}.tile:nth-child(1){grid-column:span 3}.tile:nth-child(2){grid-column:span 3}.tile:nth-child(n+3){grid-column:span 2}
+.tile h3{font-size:1.3rem;margin-bottom:10px}.tile p{color:var(--muted);font-size:.94rem}.tile .ic{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;margin-bottom:20px;font-size:1.1rem}
+.timeline{padding:34px}.tl-top{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}.timeline h3{font-size:1.5rem}.timeline small{color:var(--muted)}.badge{font-size:.78rem;padding:5px 12px;border-radius:99px;border:1px solid var(--line);color:#34d399;height:max-content}
+.timeline ul{list-style:none;display:grid;gap:14px;margin-top:22px}.timeline li{padding-left:22px;position:relative;color:var(--muted)}.timeline li:before{content:"";position:absolute;left:0;top:.65em;width:8px;height:8px;border-radius:3px;background:linear-gradient(135deg,var(--acc),var(--acc2))}.timeline li b{color:var(--ink);font-weight:600}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.fb{padding:9px 16px;border-radius:99px;border:1px solid var(--line);background:var(--glass);color:var(--muted);font:600 .84rem Figtree,sans-serif;cursor:pointer;transition:.2s}.fb:hover{color:var(--ink)}.fb.active{background:var(--ink);color:var(--bg);border-color:transparent}
+.plist{display:grid;gap:12px}.project{display:grid;grid-template-columns:1fr auto 44px;gap:24px;align-items:center;padding:24px 26px;cursor:pointer;transition:transform .25s,border-color .25s}.project.hidden{display:none}
+.p-type{font-size:.8rem;color:var(--acc);font-weight:600}.project h3{font-size:1.45rem;margin:4px 0 6px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.project p{color:var(--muted);font-size:.93rem;max-width:62ch}
+.live-badge{font:600 .7rem Figtree,sans-serif;color:#34d399;border:1px solid rgba(52,211,153,.4);padding:2px 9px;border-radius:99px;letter-spacing:.02em}
+.chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:260px}.pill{font-size:.76rem;padding:5px 11px;border-radius:99px;border:1px solid var(--line);background:var(--glass);color:var(--muted)}
+.go{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);font-size:1.1rem;transition:.2s}.project:hover .go{background:var(--ink);color:var(--bg)}
+.stack{padding:30px;display:flex;flex-wrap:wrap;gap:10px}.stack span{padding:10px 16px;border-radius:14px;border:1px solid var(--line);background:var(--glass);font-size:.9rem;font-weight:500}
+.contact{padding:clamp(32px,6vw,72px);text-align:center;position:relative;overflow:hidden}.contact h2{font-size:clamp(2.3rem,5vw,4.2rem);margin:0 auto 14px;max-width:14ch}.contact p{color:var(--muted);max-width:50ch;margin:0 auto}.contact .actions{justify-content:center;margin-top:28px}.email{display:inline-block;margin-top:20px;font-weight:600;color:var(--acc);overflow-wrap:anywhere}
+footer{padding:24px 0 40px;color:var(--muted);font-size:.84rem}footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px}
+.modal-backdrop{position:fixed;inset:0;z-index:50;background:var(--scrim);backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .22s}.modal-backdrop.open{display:flex;opacity:1}
+.modal-card{width:min(720px,100%);max-height:88vh;overflow-y:auto;padding:32px;border-radius:28px;border:1px solid var(--line);background:var(--glass2);box-shadow:0 30px 90px rgba(0,0,0,.4),inset 0 1px 0 var(--hi)}
+.modal-close{float:right;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--glass);color:var(--ink);cursor:pointer}.modal-card h3{font-size:1.9rem;margin:6px 0 4px}#mType{color:var(--acc);font-weight:600;font-size:.85rem}
+.modal-grid{display:grid;gap:12px;margin-top:20px}.modal-block{padding:16px 18px;border:1px solid var(--line);border-radius:18px;background:var(--glass)}.modal-block h4{font-size:.85rem;color:var(--acc);margin-bottom:8px}.modal-block p,.modal-block li{color:var(--muted);font-size:.92rem}.modal-block ul{list-style:none;display:grid;gap:8px}.modal-block li:before{content:"– ";color:var(--acc)}
+.pipeline-flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.pipe-step{font-size:.8rem;padding:6px 12px;border-radius:10px;border:1px solid var(--line);background:var(--glass);color:var(--ink)}.pipe-arrow{color:var(--muted)}.modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}.reveal.visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+@media(max-width:860px){.hero{padding-top:36px}.hero-grid{grid-template-columns:1fr;gap:34px}.portrait-stage{order:-1}.portrait-frame{width:min(78%,340px)}.about{grid-template-columns:1fr}.bento{grid-template-columns:1fr 1fr}.tile:nth-child(n){grid-column:span 1}.tile:nth-child(1){grid-column:span 2}.project{grid-template-columns:1fr 44px}.chips{grid-column:1;justify-content:flex-start;max-width:none}.go{grid-row:1;grid-column:2}
+#menuBtn{display:grid}.links{position:absolute;top:64px;left:0;right:0;display:none;flex-direction:column;padding:12px 20px;background:var(--glass2);border-bottom:1px solid var(--line);backdrop-filter:blur(22px)}.links.open{display:flex}.links a{padding:12px}}
+@media(max-width:520px){.wrap{width:calc(100% - 30px)}.section{padding:60px 0}.bento{grid-template-columns:1fr}.tile:nth-child(n){grid-column:span 1}.facts{gap:22px}.actions .btn{flex:1;justify-content:center}.about .glass,.timeline,.stack,.modal-card{padding:22px}.project{padding:20px}}
+</style>
 </head>
 <body>
-  <canvas id="particles" aria-hidden="true"></canvas>
-  <header class="nav-shell"><div class="wrap"><nav class="nav" aria-label="Main navigation">
-    <a class="brand" href="#home">Siddharth<span>.</span></a>
-    <div class="nav-links" id="navLinks"><a href="#about">About</a><a href="#expertise">Expertise</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#stack">Stack</a><a class="nav-cta" href="#contact">Let's talk ↗</a></div>
-    <div class="nav-tools"><button class="theme-btn" id="themeBtn" aria-label="Switch to light mode" title="Toggle light / dark">☀</button><button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">☰</button></div>
-  </nav></div></header>
+<header class="bar"><div class="wrap"><a class="brand" href="#home">Siddharth Soni</a>
+<nav class="links" id="navLinks" aria-label="Main"><a href="#about">About</a><a href="#expertise">Expertise</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#stack">Stack</a><a href="#contact">Contact</a></nav>
+<div class="tools"><button class="ib" id="themeBtn" aria-label="Toggle theme">☀</button><button class="ib" id="menuBtn" aria-label="Open navigation" aria-expanded="false">☰</button></div></div></header>
+<main>
+<section class="hero" id="home"><div class="wrap hero-grid">
+<div><div class="status"><i></i>Open to full-time AI / GenAI Engineer roles</div>
+<h1>AI that works <span>beyond the prompt.</span></h1>
+<p class="lead">I'm Siddharth, an AI / GenAI developer in Jaipur. I build <b>agentic workflows, MCP pipelines and document intelligence</b> that turn manual operations into deterministic, auditable software.</p>
+<div class="actions"><a class="btn btn-primary" href="#projects">See my systems</a><a class="btn btn-secondary" href="mailto:er.sonisiddharth@gmail.com">Contact me</a><a class="btn btn-secondary" href="Siddharth_Soni_Resume.pdf">Résumé</a><a class="btn btn-secondary" href="https://github.com/soni-siddharth" target="_blank" rel="noopener">GitHub</a></div>
+<div class="facts"><div><strong>6+</strong><span>Systems in production</span></div><div><strong>~60%</strong><span>Faster batch pipelines</span></div><div><strong>MCP + Agents</strong><span>Deterministic orchestration</span></div></div></div>
+<div class="portrait-stage"><div class="portrait-frame" id="character3d"><img src="assets/siddharth-3d-character.png" alt="Siddharth Soni in a burgundy suit and glasses" fetchpriority="high" draggable="false"><div class="cap"><strong>Siddharth Soni</strong><span>AI / GenAI Developer · Moksha Infotech</span></div></div></div>
+</div></section>
 
-  <main>
-    <section class="hero" id="home"><div class="wrap hero-grid">
-      <div class="hero-content">
-        <div class="availability"><span class="dot"></span> Open to full-time AI / GenAI Engineer roles</div>
-        <p class="mono">AI ENGINEER · JAIPUR, INDIA</p>
-        <h1 style="margin-top:13px">Building useful AI.<br><span class="gradient">Beyond the prompt.</span></h1>
-        <p class="hero-subtitle">Hi, I'm Siddharth Soni — AI / GenAI Developer.</p>
-        <p class="hero-copy">I architect production-grade agentic workflows, Model Context Protocol (MCP) pipelines, high-concurrency document intelligence, and multi-tenant enterprise platforms that turn complex manual operations into deterministic, auditable software.</p>
-        <div class="actions"><a class="btn btn-primary" href="#projects">Explore my systems <span>↘</span></a><a class="btn btn-secondary" href="mailto:er.sonisiddharth@gmail.com">Contact me ↗</a><a class="btn btn-secondary" href="Siddharth_Soni_Resume.pdf">Résumé ↓</a></div>
-        <div class="quick-stats"><div class="stat"><strong>6+ Systems</strong><span>Shipped in production</span></div><div class="stat"><strong>MCP + Agents</strong><span>Deterministic orchestration</span></div><div class="stat"><strong>60% Faster</strong><span>Batch document pipelines</span></div></div>
-      </div>
-      <div class="portrait-stage" aria-label="Portrait of Siddharth Soni">
-        <div class="orbit"></div>
-        <div class="portrait-frame" id="character3d"><img src="assets/siddharth-3d-character.png" alt="Full-body 3D-style character of Siddharth Soni wearing a burgundy suit and glasses" fetchpriority="high" draggable="false"><div class="portrait-caption"><strong>Siddharth Soni</strong><span>AI / GenAI Developer</span></div></div>
-        <div class="floating-tag">◉ SYSTEMS THINKING × AI</div>
-      </div>
-    </div></section>
+<section class="section" id="about"><div class="wrap"><div class="sh reveal"><h2>Engineering intelligence into real workflows.</h2><p>Across the AI stack: hybrid OCR, validation gates, multi-agent orchestration, MCP servers and production React interfaces.</p></div>
+<div class="about reveal"><div class="glass"><p>I'm an AI / GenAI Developer at Moksha Infotech in Jaipur. My work turns high-stakes financial, audit and enterprise operations into dependable software using LLMs, MCP tools, OCR pipelines and multi-tenant backends.</p><p>I focus on what makes AI usable in production: deterministic Python calculations kept separate from LLM extraction, content-hash caching, human-in-the-loop approvals, and full-stack delivery from schema to cloud.</p></div>
+<div class="glass"><dl><div><dt>Role</dt><dd>AI / GenAI Developer, Moksha Infotech</dd></div><div><dt>Location</dt><dd>Jaipur, India · Onsite &amp; remote</dd></div><div><dt>Education</dt><dd>B.Tech, Computer Engineering (AI), 2024</dd></div><div><dt>Focus</dt><dd>Agentic AI, MCP, document intelligence</dd></div></dl></div></div></div></section>
 
-    <section class="section" id="about"><div class="wrap">
-      <div class="section-head reveal"><div><p class="mono">01 / ABOUT</p><h2>Engineering intelligence<br>into real workflows.</h2></div><p>I build across the full AI stack — from hybrid OCR and deterministic validation gates to multi-agent orchestration, MCP servers, and production React interfaces.</p></div>
-      <div class="about-grid reveal"><article class="glass about-copy"><p class="mono">A LITTLE ABOUT ME</p><p>I'm an AI / GenAI Developer at Moksha Infotech, based in Jaipur, India. My work focuses on turning high-stakes financial, audit, and enterprise operations into dependable software using LLMs, MCP tools, OCR pipelines, and multi-tenant backend architectures.</p><p>I specialize in the engineering discipline that makes AI usable in production: separating deterministic Python calculations from LLM extraction, content-hash caching, human-in-the-loop approval gates, and shipping full-stack platforms from database schema to cloud deployment.</p></article>
-        <div class="facts"><div class="glass fact"><span class="mono">CURRENT ROLE</span><strong>AI / GenAI Developer</strong><small>Moksha Infotech · Full-time</small></div><div class="glass fact"><span class="mono">LOCATION</span><strong>Jaipur, India</strong><small>Open to Onsite & Remote</small></div><div class="glass fact"><span class="mono">EDUCATION</span><strong>B.Tech, 2024</strong><small>Computer Engineering (AI)</small></div><div class="glass fact"><span class="mono">FOCUS</span><strong>Agentic AI & MCP</strong><small>Document intelligence · SaaS</small></div></div>
-      </div>
-    </div></section>
+<section class="section" id="expertise"><div class="wrap"><div class="sh reveal"><h2>What I build</h2><p>The model handles ambiguity; deterministic code handles the numbers.</p></div>
+<div class="bento reveal">
+<div class="glass tile"><div class="ic">⚙</div><h3>Agentic workflows</h3><p>Multi-agent orchestration with tool use, approval gates and auditable execution traces.</p></div>
+<div class="glass tile"><div class="ic">⌘</div><h3>MCP systems</h3><p>Model Context Protocol servers and pipelines that connect LLMs safely to enterprise data and tools.</p></div>
+<div class="glass tile"><div class="ic">▤</div><h3>Document intelligence</h3><p>Hybrid OCR plus LLM extraction with validation, caching and parallel batch processing.</p></div>
+<div class="glass tile"><div class="ic">◈</div><h3>Audit automation</h3><p>Traceable, reviewable results for finance and compliance work.</p></div>
+<div class="glass tile"><div class="ic">⛁</div><h3>Multi-tenant platforms</h3><p>Backend and database design for secure SaaS, deployed on Docker and Kubernetes.</p></div>
+</div></div></section>
 
-    <section class="section" id="expertise"><div class="wrap">
-      <div class="section-head reveal"><div><p class="mono">02 / EXPERTISE</p><h2>What I build.</h2></div><p>Reliable AI systems where the model handles ambiguity and deterministic code handles the numbers.</p></div>
-      <div class="service-grid reveal">
-        <div class="glass service"><div class="service-icon">⚙</div><h3>Agentic Workflows</h3><p>Multi-agent orchestration with tool use, approval gates, and auditable execution traces.</p></div>
-        <div class="glass service"><div class="service-icon">⌘</div><h3>MCP Systems</h3><p>Model Context Protocol servers and pipelines that connect LLMs safely to enterprise data and tools.</p></div>
-        <div class="glass service"><div class="service-icon">▤</div><h3>Document Intelligence</h3><p>Hybrid OCR plus LLM extraction with validation, caching, and high-concurrency batch processing.</p></div>
-        <div class="glass service"><div class="service-icon">◈</div><h3>Audit & Finance Automation</h3><p>Deterministic calculations separated from LLM extraction for traceable, reviewable results.</p></div>
-        <div class="glass service"><div class="service-icon">⛁</div><h3>Multi-tenant Platforms</h3><p>Backend architecture and database design for secure SaaS, from schema to cloud deployment.</p></div>
-        <div class="glass service"><div class="service-icon">◧</div><h3>Full-stack Interfaces</h3><p>Production React front-ends that make AI workflows usable for non-technical teams.</p></div>
-      </div>
-    </div></section>
+<section class="section" id="experience"><div class="wrap"><div class="sh reveal"><h2>Experience</h2></div>
+<article class="glass timeline reveal"><div class="tl-top"><div><h3>AI / GenAI Developer</h3><small>Moksha Infotech · Jaipur, India · Full-time</small></div><span class="badge">Current</span></div>
+<ul><li><b>Multi-agent onboarding and orchestration</b> (moxFlow v3) for multi-tenant enterprise operations.</li><li><b>MCP compliance and audit pipelines</b> that keep LLM extraction separate from deterministic calculations.</li><li><b>Hybrid CPU / I/O parallel PDF batching</b> for investment statements, cutting batch time by about 60%.</li><li><b>Docker and Kubernetes deployments</b> for production AI services.</li></ul></article></div></section>
 
-    <section class="section" id="experience"><div class="wrap">
-      <div class="section-head reveal"><div><p class="mono">03 / EXPERIENCE</p><h2>Where I've worked.</h2></div></div>
-      <article class="glass timeline reveal"><div class="timeline-top"><div><p class="mono">Moksha Infotech</p><h3>AI / GenAI Developer</h3><p class="location">Jaipur, India · Full-time</p></div><span class="badge mono">CURRENT</span></div>
-        <ul>
-          <li><strong>Multi-agent onboarding and workflow orchestration</strong> (moxFlow v3) for multi-tenant enterprise operations.</li>
-          <li><strong>MCP compliance and audit pipelines</strong> that keep LLM extraction separate from deterministic Python calculations.</li>
-          <li><strong>Hybrid CPU / I/O parallel PDF batching</strong> for investment statements, cutting batch processing time by ~60%.</li>
-          <li><strong>Docker and Kubernetes deployments</strong> for production AI services, from database schema to cloud.</li>
-        </ul>
-      </article>
-    </div></section>
+<section class="section" id="projects"><div class="wrap"><div class="sh reveal"><h2>Systems I've shipped</h2><p>Select a project for the architecture and key decisions.</p></div>
+<div class="filters" id="filters"><button class="fb active" data-f="all">All systems (6)</button><button class="fb" data-f="agents">Agentic AI &amp; MCP</button><button class="fb" data-f="docai">Document AI &amp; OCR</button><button class="fb" data-f="saas">Full-stack SaaS</button></div>
+<div class="plist" id="projectGrid">
+        <article class="glass project" data-cat="agents saas" data-id="moxflow" role="button" tabindex="0"><div class="p-main"><span class="p-type">Multi-agent · SaaS Platform</span><h3>moxFlow v3 <span class="live-badge">Live</span></h3><p>Multi-tenant workflow platform with multi-agent onboarding and orchestration, deployed on Docker and Kubernetes.</p></div><div class="chips"><span class="pill">LangGraph</span><span class="pill">PostgreSQL</span><span class="pill">Kubernetes</span></div><span class="go" aria-hidden="true">↗</span></article>
+        <article class="glass project" data-cat="agents" data-id="sefa" role="button" tabindex="0"><div class="p-main"><span class="p-type">Agent Harness · MCP Compliance</span><h3>SEFA-Audit Agent Harness</h3><p>MCP-based audit harness where LLM extraction feeds deterministic compliance checks with approval gates.</p></div><div class="chips"><span class="pill">MCP</span><span class="pill">Python</span><span class="pill">LLM</span></div><span class="go" aria-hidden="true">↗</span></article>
+        <article class="glass project" data-cat="agents" data-id="gl" role="button" tabindex="0"><div class="p-main"><span class="p-type">MCP Agent · Finance</span><h3>GL Analysis MCP Agent <span class="live-badge">Live</span></h3><p>An MCP agent for general-ledger analysis, exposed through a live web interface.</p></div><div class="chips"><span class="pill">MCP</span><span class="pill">Agents</span><span class="pill">Python</span></div><span class="go" aria-hidden="true">↗</span></article>
+        <article class="glass project" data-cat="docai" data-id="invest" role="button" tabindex="0"><div class="p-main"><span class="p-type">Document AI · Parallel Batching</span><h3>Hybrid Parallel Investment Statement Analyzer</h3><p>Hybrid CPU / I/O parallel PDF batching for high-volume statement analysis.</p></div><div class="chips"><span class="pill">PyMuPDF</span><span class="pill">DocTR</span><span class="pill">Python</span></div><span class="go" aria-hidden="true">↗</span></article>
+        <article class="glass project" data-cat="docai" data-id="capital" role="button" tabindex="0"><div class="p-main"><span class="p-type">Audit · Depreciation</span><h3>Capital Assets Audit & Depreciation Engine</h3><p>Extracts capital asset data and computes depreciation deterministically for reviewable audit output.</p></div><div class="chips"><span class="pill">OCR</span><span class="pill">Python</span><span class="pill">LLM</span></div><span class="go" aria-hidden="true">↗</span></article>
+        <article class="glass project" data-cat="docai saas" data-id="pdr" role="button" tabindex="0"><div class="p-main"><span class="p-type">Verification · Console</span><h3>PDR Check Verification Console</h3><p>A review console for verifying extracted check data before it is accepted.</p></div><div class="chips"><span class="pill">React</span><span class="pill">OCR</span><span class="pill">Python</span></div><span class="go" aria-hidden="true">↗</span></article>
+        </div></div></section>
 
-    <section class="section" id="projects"><div class="wrap">
-      <div class="section-head reveal"><div><p class="mono">04 / PROJECTS</p><h2>Systems I've shipped.</h2></div><p>Click any card for a short case study.</p></div>
-      <div class="filter-bar" id="filters"><button class="filter-btn active" data-f="all">All Systems (6)</button><button class="filter-btn" data-f="agents">Agentic AI &amp; MCP</button><button class="filter-btn" data-f="docai">Document AI &amp; OCR</button><button class="filter-btn" data-f="saas">Full-Stack SaaS</button></div>
-      <div class="project-grid" id="projectGrid">
-        <article class="glass project featured" data-cat="agents saas" data-id="moxflow"><div class="project-top"><span class="project-type">Multi-agent · SaaS Platform</span><span class="project-num">01</span></div><h3>moxFlow v3 <span class="live-badge">Live</span></h3><p>Multi-tenant workflow platform with multi-agent onboarding and orchestration, deployed on Docker and Kubernetes.</p><div class="project-footer"><div class="chips"><span class="pill">LangGraph</span><span class="pill">PostgreSQL</span><span class="pill">Kubernetes</span></div><span class="inspect-link">Inspect Architecture →</span></div></article>
-        <article class="glass project" data-cat="agents" data-id="sefa"><div class="project-top"><span class="project-type">Agent Harness · MCP Compliance</span><span class="project-num">02</span></div><h3>SEFA-Audit Agent Harness</h3><p>MCP-based audit harness where LLM extraction feeds deterministic compliance checks with approval gates.</p><div class="project-footer"><div class="chips"><span class="pill">MCP</span><span class="pill">Python</span><span class="pill">LLM</span></div><span class="inspect-link">Inspect Architecture →</span></div></article>
-        <article class="glass project" data-cat="agents" data-id="gl"><div class="project-top"><span class="project-type">MCP Agent · Finance</span><span class="project-num">03</span></div><h3>GL Analysis MCP Agent <span class="live-badge">Live</span></h3><p>An MCP agent for general-ledger analysis, exposed through a live web interface.</p><div class="project-footer"><div class="chips"><span class="pill">MCP</span><span class="pill">Agents</span><span class="pill">Python</span></div><span class="inspect-link">Inspect Architecture →</span></div></article>
-        <article class="glass project" data-cat="docai" data-id="invest"><div class="project-top"><span class="project-type">Document AI · Parallel Batching</span><span class="project-num">04</span></div><h3>Hybrid Parallel Investment Statement Analyzer</h3><p>Hybrid CPU / I/O parallel PDF batching for high-volume statement analysis.</p><div class="project-footer"><div class="chips"><span class="pill">PyMuPDF</span><span class="pill">DocTR</span><span class="pill">Python</span></div><span class="inspect-link">Inspect Architecture →</span></div></article>
-        <article class="glass project" data-cat="docai" data-id="capital"><div class="project-top"><span class="project-type">Audit · Depreciation</span><span class="project-num">05</span></div><h3>Capital Assets Audit & Depreciation Engine</h3><p>Extracts capital asset data and computes depreciation deterministically for reviewable audit output.</p><div class="project-footer"><div class="chips"><span class="pill">OCR</span><span class="pill">Python</span><span class="pill">LLM</span></div><span class="inspect-link">Inspect Architecture →</span></div></article>
-        <article class="glass project" data-cat="docai saas" data-id="pdr"><div class="project-top"><span class="project-type">Verification · Console</span><span class="project-num">06</span></div><h3>PDR Check Verification Console</h3><p>A review console for verifying extracted check data before it is accepted.</p><div class="project-footer"><div class="chips"><span class="pill">React</span><span class="pill">OCR</span><span class="pill">Python</span></div><span class="inspect-link">Inspect Architecture →</span></div></article>
-      </div>
-    </div></section>
+<section class="section" id="stack"><div class="wrap"><div class="sh reveal"><h2>Stack</h2></div>
+<div class="glass stack reveal"><span>Python</span><span>FastAPI</span><span>LangGraph</span><span>Model Context Protocol</span><span>LLMs / GenAI</span><span>Multi-agent systems</span><span>DocTR</span><span>PyMuPDF</span><span>React</span><span>PostgreSQL</span><span>Docker</span><span>Kubernetes</span></div></div></section>
 
-    <section class="section" id="stack"><div class="wrap">
-      <div class="section-head reveal"><div><p class="mono">05 / STACK</p><h2>Tools I work with.</h2></div></div>
-      <div class="glass skills-panel reveal"><p class="mono">CORE STACK</p><div class="skills"><span class="skill">Python</span><span class="skill">FastAPI</span><span class="skill">LangGraph</span><span class="skill">Model Context Protocol (MCP)</span><span class="skill">LLMs / GenAI</span><span class="skill">Multi-agent systems</span><span class="skill">DocTR</span><span class="skill">PyMuPDF</span><span class="skill">React</span><span class="skill">PostgreSQL</span><span class="skill">Docker</span><span class="skill">Kubernetes</span></div></div>
-    </div></section>
+<section class="section" id="contact"><div class="wrap"><div class="glass contact reveal"><h2>Let's build something useful.</h2><p>Open to full-time AI / GenAI Engineer roles, onsite or remote.</p><a class="email" href="mailto:er.sonisiddharth@gmail.com">er.sonisiddharth@gmail.com</a>
+<div class="actions"><a class="btn btn-primary" href="mailto:er.sonisiddharth@gmail.com">Email me</a><a class="btn btn-secondary" href="Siddharth_Soni_Resume.pdf">Résumé</a></div></div></div></section>
+</main>
+<footer><div class="wrap"><span>© <span id="yr"></span> Siddharth Soni</span><span>Jaipur, India</span></div></footer>
 
-    <section class="section" id="contact"><div class="wrap">
-      <div class="glass contact reveal"><p class="mono">06 / CONTACT</p><h2>Let's build something useful.</h2><p>Open to full-time AI / GenAI Engineer roles, onsite or remote.</p><a class="email" href="mailto:er.sonisiddharth@gmail.com">er.sonisiddharth@gmail.com</a>
-        <div class="actions" style="margin-top:26px"><a class="btn btn-primary" href="mailto:er.sonisiddharth@gmail.com">Email me ↗</a><a class="btn btn-secondary" href="https://github.com/soni-siddharth" target="_blank" rel="noopener">GitHub ↗</a><a class="btn btn-secondary" href="Siddharth_Soni_Resume.pdf">Résumé ↓</a></div></div>
-    </div></section>
-  </main>
-
-  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="yr"></span> Siddharth Soni</span><span class="footer-note">Jaipur, India · AI Engineer</span></div></footer>
-
-  <div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle"><div class="modal-card">
-    <button class="modal-close" id="mClose" aria-label="Close">✕</button>
-    <p class="mono" id="mType"></p><h3 id="mTitle"></h3>
-    <div class="modal-grid">
-      <div class="modal-block"><h4>The Challenge</h4><p id="mChal"></p></div>
-      <div class="modal-block"><h4>System Architecture Pipeline</h4><div class="pipeline-flow" id="mFlow"></div></div>
-      <div class="modal-block"><h4>Key Engineering Decisions</h4><ul id="mList"></ul></div>
-    </div>
-    <div class="modal-actions" id="mActions"></div>
-  </div></div>
-
-  <script>
-  (function(){
-    var root=document.documentElement,tb=document.getElementById('themeBtn'),meta=document.querySelector('meta[name=theme-color]'),PC='123,232,255',LC='167,149,255';
-    function sync(){var l=root.dataset.theme==='light';tb.textContent=l?'☾':'☀';tb.setAttribute('aria-label',l?'Switch to dark mode':'Switch to light mode');meta.content=l?'#eef2fb':'#070912';var cs=getComputedStyle(root);PC=cs.getPropertyValue('--pc').trim();LC=cs.getPropertyValue('--lc').trim()}
-    sync();
-    tb.addEventListener('click',function(){var n=root.dataset.theme==='light'?'dark':'light';root.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}sync()});
-    document.getElementById('yr').textContent=new Date().getFullYear();
-    var menu=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
-    menu.addEventListener('click',function(){var o=links.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
-    links.addEventListener('click',function(e){if(e.target.tagName==='A'){links.classList.remove('open');menu.setAttribute('aria-expanded','false')}});
-
-    // reveal on scroll
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})},{threshold:.12});
-    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-
-    // project filter
-    var cards=[].slice.call(document.querySelectorAll('.project'));
-    document.getElementById('filters').addEventListener('click',function(e){
-      var b=e.target.closest('.filter-btn');if(!b)return;
-      document.querySelectorAll('.filter-btn').forEach(function(x){x.classList.toggle('active',x===b)});
-      var f=b.dataset.f;
-      cards.forEach(function(c){c.classList.toggle('hidden',f!=='all'&&c.dataset.cat.split(' ').indexOf(f)<0)});
-    });
-
-    // case study modal
-    var MOX='https://moxflow.duckdns.org',GL='https://gl-analysis.moxflow.duckdns.org';
+<div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle"><div class="modal-card">
+<button class="modal-close" id="mClose" aria-label="Close">✕</button><p id="mType"></p><h3 id="mTitle"></h3>
+<div class="modal-grid"><div class="modal-block"><h4>The challenge</h4><p id="mChal"></p></div><div class="modal-block"><h4>Architecture pipeline</h4><div class="pipeline-flow" id="mFlow"></div></div><div class="modal-block"><h4>Key engineering decisions</h4><ul id="mList"></ul></div></div>
+<div class="modal-actions" id="mActions"></div></div></div>
+<script>
+(function(){
+var root=document.documentElement,tb=document.getElementById('themeBtn'),meta=document.querySelector('meta[name=theme-color]');
+function sync(){var l=root.dataset.theme==='light';tb.textContent=l?'☾':'☀';tb.setAttribute('aria-label',l?'Switch to dark mode':'Switch to light mode');meta.content=l?'#eceef5':'#0a0b10'}
+sync();tb.addEventListener('click',function(){var n=root.dataset.theme==='light'?'dark':'light';root.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}sync();tb.blur()});
+document.getElementById('yr').textContent=new Date().getFullYear();
+var menu=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+menu.addEventListener('click',function(){var o=links.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
+links.addEventListener('click',function(e){if(e.target.tagName==='A'){links.classList.remove('open');menu.setAttribute('aria-expanded','false')}});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+var cards=[].slice.call(document.querySelectorAll('.project'));
+document.getElementById('filters').addEventListener('click',function(e){var b=e.target.closest('.fb');if(!b)return;document.querySelectorAll('.fb').forEach(function(x){x.classList.toggle('active',x===b)});var f=b.dataset.f;cards.forEach(function(c){c.classList.toggle('hidden',f!=='all'&&c.dataset.cat.split(' ').indexOf(f)<0)})});
+var MOX='https://moxflow.duckdns.org',GL='https://gl-analysis.moxflow.duckdns.org';
     var D={
       moxflow:{t:'Multi-agent · SaaS Platform',n:'moxFlow v3',c:'Enterprise onboarding and operations are slow, manual, and differ for every tenant.',f:['Tenant intake','Agent router','LangGraph agents','Approval gate','Postgres','K8s deploy'],l:['Multi-agent onboarding orchestrated with LangGraph','Multi-tenant PostgreSQL data model','Docker and Kubernetes deployment'],k:[['Open live platform ↗',MOX]]},
       sefa:{t:'Agent Harness · MCP Compliance',n:'SEFA-Audit Agent Harness',c:'Audit checks must be repeatable and traceable even when LLMs do the extraction.',f:['Documents','LLM extract','MCP tools','Deterministic checks','Approval','Report'],l:['LLM extraction separated from deterministic calculations','MCP tools expose compliance checks to the agent','Human-in-the-loop approval before results are final'],k:[]},
@@ -184,42 +138,19 @@
       capital:{t:'Audit · Depreciation',n:'Capital Assets Audit & Depreciation Engine',c:'Depreciation schedules must be correct and explainable, not LLM-guessed.',f:['Asset docs','Extract','Validate','Depreciation engine','Audit report'],l:['LLM extracts fields, Python computes depreciation','Validation gates catch bad extractions','Outputs designed for auditor review'],k:[]},
       pdr:{t:'Verification · Console',n:'PDR Check Verification Console',c:'Extracted check data needs fast human verification before it is trusted.',f:['Check images','OCR extract','Confidence flags','Reviewer console','Approved data'],l:['Side-by-side review of source and extracted values','Low-confidence fields surfaced first','Approval step before data is accepted'],k:[]}
     };
-    var m=document.getElementById('modal'),last;
-    function open(id,el){
-      var d=D[id];if(!d)return;last=el;
-      mType.textContent=d.t;mTitle.textContent=d.n;mChal.textContent=d.c;
-      mActions.innerHTML=d.k.map(function(x){return '<a class="btn btn-primary" target="_blank" rel="noopener" href="'+x[1]+'">'+x[0]+'</a>'}).join('')+'<a class="btn btn-secondary" href="#contact" id="mCta">Discuss this system ↗</a>';
-      document.getElementById('mCta').addEventListener('click',close);
-      mFlow.innerHTML=d.f.map(function(s){return '<span class="pipe-step">'+s+'</span>'}).join('<span class="pipe-arrow">→</span>');
-      mList.innerHTML=d.l.map(function(s){return '<li>'+s+'</li>'}).join('');
-      m.classList.add('open');document.body.style.overflow='hidden';mClose.focus();
-    }
-    function close(){m.classList.remove('open');document.body.style.overflow='';if(last)last.focus()}
-    cards.forEach(function(c){c.tabIndex=0;c.setAttribute('role','button');
-      c.addEventListener('click',function(){open(c.dataset.id,c)});
-      c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(c.dataset.id,c)}})});
-    mClose.addEventListener('click',close);
-    m.addEventListener('click',function(e){if(e.target===m)close()});
-    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('open'))close()});
-
-    // portrait tilt
-    var ch=document.getElementById('character3d'),stage=ch.parentElement;
-    if(!matchMedia('(prefers-reduced-motion:reduce)').matches&&matchMedia('(hover:hover)').matches){
-      stage.addEventListener('mousemove',function(e){var r=stage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;ch.style.transform='rotateY('+x*14+'deg) rotateX('+(-y*10)+'deg)'});
-      stage.addEventListener('mouseleave',function(){ch.style.transform=''});
-    }
-
-    // particles
-    var cv=document.getElementById('particles'),cx=cv.getContext('2d'),P=[],W,H;
-    function size(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=[];for(var i=0;i<Math.min(70,W/18);i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*1.4+.4})}
-    function tick(){cx.clearRect(0,0,W,H);
-      for(var i=0;i<P.length;i++){var p=P[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
-        cx.fillStyle='rgba('+PC+',.75)';cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.283);cx.fill();
-        for(var j=i+1;j<P.length;j++){var q=P[j],dx=p.x-q.x,dy=p.y-q.y,d=dx*dx+dy*dy;if(d<14000){cx.strokeStyle='rgba('+LC+','+(.16*(1-d/14000))+')';cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(q.x,q.y);cx.stroke()}}}
-      requestAnimationFrame(tick)}
-    size();addEventListener('resize',size);
-    if(!matchMedia('(prefers-reduced-motion:reduce)').matches)tick();
-  })();
-  </script>
+var m=document.getElementById('modal'),last;
+function open(id,el){var d=D[id];if(!d)return;last=el;mType.textContent=d.t;mTitle.textContent=d.n;mChal.textContent=d.c;
+mFlow.innerHTML=d.f.map(function(s){return '<span class="pipe-step">'+s+'</span>'}).join('<span class="pipe-arrow">→</span>');
+mList.innerHTML=d.l.map(function(s){return '<li>'+s+'</li>'}).join('');
+mActions.innerHTML=d.k.map(function(x){return '<a class="btn btn-primary" target="_blank" rel="noopener" href="'+x[1]+'">'+x[0]+'</a>'}).join('')+'<a class="btn btn-secondary" href="#contact" id="mCta">Discuss this system</a>';
+document.getElementById('mCta').addEventListener('click',close);m.classList.add('open');document.body.style.overflow='hidden';mClose.focus()}
+function close(){m.classList.remove('open');document.body.style.overflow='';if(last)last.focus()}
+cards.forEach(function(c){c.addEventListener('click',function(){open(c.dataset.id,c)});c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(c.dataset.id,c)}})});
+mClose.addEventListener('click',close);m.addEventListener('click',function(e){if(e.target===m)close()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('open'))close()});
+var ch=document.getElementById('character3d'),st=ch.parentElement;
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches&&matchMedia('(hover:hover)').matches){st.addEventListener('mousemove',function(e){var r=st.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;ch.style.transform='rotateY('+x*12+'deg) rotateX('+(-y*8)+'deg)'});st.addEventListener('mouseleave',function(){ch.style.transform=''})}
+})();
+</script>
 </body>
 </html>
